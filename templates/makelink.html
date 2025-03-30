@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Survey Link</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #666;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: calc(100% - 22px); /* Adjust for padding and border */
+        }
+
+        button {
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #link-container {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+            overflow-wrap: break-word; /* Allows long words to break and wrap onto the next line */
+            word-wrap: break-word;     /* Provides compatibility for older browsers */
+        }
+
+
+        .btn-email {
+            margin-top: 10px;
+            background-color: #28a745;
+        }
+
+        .btn-email:hover {
+            background-color: #218838;
+        }
+
+        #btn-back {
+            background-color: #111c13;
+        }
+    </style>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    document.addEventListener('DOMContentLoaded', async function() {
+        let db;  // Declare the db variable here to make it available to all functions
+
+        async function generateLink(event) {
+            event.preventDefault();
+    
+            // Collect form data
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+            let data = {};
+
+            // Convert FormData to object and encrypt values
+            for (const [key, value] of formData.entries()) {
+                const encryptedValue = await encryptData(value);
+                data[key] = encryptedValue;
+            }
+
+            // Encrypt username
+            let usernameclean = localStorage.getItem('WMusername');
+            // alert(usernameclean)
+
+            let username = await encryptData(usernameclean);
+            // alert(username)
+            if (username) {
+                data.username = username;
+            }
+
+            // Convert data object to URLSearchParams for compatibility with the server
+            const urlEncodedData = new URLSearchParams(data).toString();
+    
+            // Send data to Flask server
+            fetch('{{ url_for('makelink') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: urlEncodedData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(`Error ${response.status}: ${text}`);
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                const linkContainer = document.getElementById('link-container');
+                linkContainer.innerHTML = `<p>Share this link with the person:</p>
+                                            <a href="${data.survey_url}">${data.survey_url}</a>`;
+                
+                // Save survey URL to localStorage
+                localStorage.setItem('survey_url', data.survey_url);
+
+
+            })
+            .catch(error => console.error('Error:', error));
+
+            // Collect form data for Firebase
+            const CLusernameold = form['name'].value;
+            const CLemailold = form['email'].value;
+
+            const CLusername = await encryptData(CLusernameold);
+            const CLemail = await encryptData(CLemailold);
+
+
+            Storelink();
+
+            // Function to fetch user data and save the client data to Firestore
+            async function fetchUserData(username) {
+                try {
+                    const response = await fetch('/firebase-config');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const firebaseConfig = await response.json();
+
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);  // Initialize db here
+
+                    // Query the collection to find the document with WMusername
+                    const userQuery = query(
+                        collection(db, "WMLogin"),
+                        where("username", "==", username)
+                    );
+
+                    const userSnapshot = await getDocs(userQuery);
+
+                    // Check if user is found by username
+                    if (!userSnapshot.empty) {
+                        const userDoc = userSnapshot.docs[0];
+                        const docId = userDoc.id;
+
+                        // Call setDocument with the retrieved document ID and form data
+                        await setDocument(docId, CLusername, CLemail);
+
+                    } else {
+                        console.error("User not found with WMusername: ", username);
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching Firebase config: ", error);
+                }
+            }
+
+            // Function to save client data to Firestore
+            async function setDocument(docId, CLusername, CLemail) {
+                try {
+                    // Reference to the document
+                    const docRef = doc(db, "WMLogin", docId);
+
+                    // Reference to the new subcollection within the document
+                    const subcollectionRef = collection(docRef, "clients");
+
+                    // Data to be saved
+                    const clientData = {
+                        CLusername: CLusername,
+                        CLemail: CLemail,
+                    };
+
+                    // Add a new document to the subcollection
+                    await addDoc(subcollectionRef, clientData);  // Use addDoc to create a new document within the subcollection
+                    console.log("Document successfully written!");
+                } catch (e) {
+                    console.error("Error writing document: ", e);
+                }
+            }
+
+
+
+
+
+            async function Storelink() {
+                alert("called"); // For debugging, to see when this function is called
+                
+                try {
+                    const response = await fetch('/firebase-config');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    const firebaseConfig = await response.json();
+
+                    // Initialize Firebase
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);  // Initialize db here
+
+                    // Query the collection to find the document with WMusername
+                    const userQuery = query(
+                        collection(db, "WMLogin"),
+                        where("username", "==", username)
+                    );
+
+                    const userSnapshot = await getDocs(userQuery);
+
+                    savedSurveyUrl = localStorage.getItem('survey_url');
+
+                    // Check if user is found by username
+                    if (!userSnapshot.empty) {
+
+                        // Call setDocument with the retrieved document ID and form data
+                        await setDocument(savedSurveyUrl, CLusername, CLemail);
+
+                    } else {
+                        console.error("User not found with WMusername: ", username);
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching Firebase config: ", error);
+                }
+            };
+
+            await fetchUserData(username);
+        }
+
+        window.generateLink = generateLink; // Make generateLink accessible to the button's onclick
+
+    });
+
+    async function encryptData(data) {
+        try {
+            const response = await fetch('/encrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: data })
+            });
+            const result = await response.json();
+            return result.encrypted_data;
+        } catch (error) {
+            console.error("Error during encryption: ", error);
+        }
+    }
+</script>
+
+<script>
+    // Function to send an email with the survey link
+    function sendEmail() {
+        const savedSurveyUrl = localStorage.getItem('survey_url');
+
+        const emailAddress = document.getElementById('email').value;
+        const subject = 'Survey Link';
+        const body = `Hi,\n\nPlease complete the survey using the following link:\n${savedSurveyUrl}\n\nThank you!`;
+        const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+</script>
+</head>
+<body>
+<div class="container">
+    <h1>Enter the client's survey details</h1>
+    <form onsubmit="generateLink(event)">
+        <label for="name"></label>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+        <label for="email"></label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <button type="submit">Generate Link</button>
+    </form>
+
+    <div id="link-container"></div>
+
+    <button class="btn-email" onclick="sendEmail()">Email this link</button>
+
+    <button class="btn-email" id="btn-back" onclick="window.location.href='{{ url_for('LogedIn') }}'">Go Back</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if the user is authenticated
+        if (!localStorage.getItem('isAuthenticated')) {
+            // Redirect to the login page if not authenticated
+            window.location.href = '/logout';
+        }
+    });
+</script>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+        async function Storelink() {
+            alert("called"); // For debugging, to see when this function is called
+            
+            try {
+                const response = await fetch('/firebase-config');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const firebaseConfig = await response.json();
+
+                // Initialize Firebase
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);  // Initialize db here
+
+                // Query the collection to find the document with WMusername
+                const userQuery = query(
+                    collection(db, "WMLogin"),
+                    where("username", "==", username)
+                );
+
+                const userSnapshot = await getDocs(userQuery);
+
+                savedSurveyUrl = localStorage.getItem('survey_url');
+
+                // Check if user is found by username
+                if (!userSnapshot.empty) {
+
+                    // Call setDocument with the retrieved document ID and form data
+                    await setDocument(savedSurveyUrl, CLusername, CLemail);
+
+                } else {
+                    console.error("User not found with WMusername: ", username);
+                }
+
+            } catch (error) {
+                console.error("Error fetching Firebase config: ", error);
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Investment Survey</title>
+  <style>
+body {
+    font-family: 'Hoefler Text', serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Hoefler Text', serif;
+    text-align: center;
+    color: #0e1c32;
+}
+
+h2 {
+    font-family: 'Hoefler Text', serif;
+    color: #0e1c32;
+}
+
+h3, h4 {
+    font-family: 'Hoefler Text', serif;
+    color: #4d6d81;
+}
+
+label {
+    font-family: 'Hoefler Text', serif;
+    color: #4d6d81;
+}
+
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="number"], input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .radio-group {
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap; /* Allows wrapping to the next line if needed */
+      gap: 10px; /* Adds space between items */
+    }
+
+    .radio-group fieldset {
+      border: none;
+      margin: 10px 0;
+      padding: 0;
+    }
+
+    .radio-group legend {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .radio-options {
+      display: flex;
+      gap: 10px;
+    }
+
+    .radio-options label {
+      margin-right: 5px;
+    }
+
+    .radio-options input[type="radio"] {
+      margin-right: 2px;
+    }
+
+    /* New styles for section visibility */
+    .section {
+      display: none;
+    }
+  
+    .section.active {
+      display: block;
+    }
+
+    .styled-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.styled-button:hover {
+  background-color: #0056b3;
+}
+
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('Website-P24\hoefler-text.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('Website-P24\hoefler-text-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('Website-P24\hoefler-text-black.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('Website-P24\hoefler-text-black-italic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+  /* Loading spinner styles */
+  #loadingSpinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #3498db;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+  }
+
+  /* Keyframes for spinner animation */
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+  /* Disable button styles */
+  button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+  }
+
+  </style>
+</head>
+<body>
+  <form id="surveyForm">
+
+    <div class="section active" id="section1">
+      <h1 id="welcome-message"></h1>
+      <p>If this is not your name, please exit this form immediately. This investor insight report is sent to you by your financial adviser to provide more personalized investment options.</p>
+  <input type="button" value="Begin!" class="styled-button" onclick="nextSection(15)">
+    </div>
+
+    <!--Attetion future me
+    this section is called section 15 temporarily because i am not bothered to go about changing all the numbers-->
+
+
+    <div class="section" id="section15">
+      <h2>Section 1.5: Financial Eligibility</h2>
+      <h3>Do you have any of the following?</h3>
+      <div class="checkbox-group">
+        <input type="checkbox" id="option1" name="financialEligibility" value="500000">
+        <label for="option1">1. €500,000 in investable assets (excluding primary residence)</label><br>
+        <input type="checkbox" id="option2" name="financialEligibility" value="100000">
+        <label for="option2">2. An income of €100,000 for individuals</label><br>
+        <input type="checkbox" id="option3" name="financialEligibility" value="300000">
+        <label for="option3">3. An income of €300,000 for a couple</label><br>
+        <input type="checkbox" id="option4" name="financialEligibility" value="none">
+        <label for="option4">4. None of the above</label>
+      </div>
+      <input type="button" value="Previous" class="styled-button" onclick="prevSection(1)">
+      <input type="button" value="Next" class="styled-button" onclick="validateSection15()">
+    </div>
+    
+
+
+
+    <div class="section" id="section2">
+      <h2>Section A: Risk Capacity</h2>
+      <h3>Risk capacity can be thought of as an investor's objective financial situation...</h3>
+      <label for="A1">A1. Currency for all entries to follow:</label>
+      <select id="A1" name="A1">
+        <option value="CHF">CHF</option>
+        <option value="GBP">GBP</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
+      <label for="A2">A2. How much do you have in liquid assets.</label>
+      <input type="number" id="A2" name="A2">
+      <label for="A4">A4. How much do you have in real estate?</label>
+      <input type="number" id="A4" name="A4">
+      <label for="A5">A5. How much do you have in pension assets?</label>
+      <input type="number" id="A5" name="A5">
+      <label for="A6">A6. How much do you owe in liabilities</label>
+      <input type="number" id="A6" name="A6">
+      <label for="A8">A8. How much do you owe in mortgage liabilities?</label>
+      <input type="number" id="A8" name="A8">
+      <label for="A9">A9. What is your average annual income? E.g., salary, pension, income from real estate or investments.</label>
+      <input type="number" id="A9" name="A9">
+      <label for="A10">A10. Average annual expenses? E.g., Cost of living, taxes, amortisations</label>
+      <input type="number" id="A10" name="A10">
+      <label for="A11">A11. Cumulative asset consumption over 5 years? (How much do you expect to spend in total over the next 5 years)</label>
+      <input type="number" id="A11" name="A11">
+      <label for="A12">A12. How much do you expect to receive in non-recurring income over the next 5 years? (Sale of house, collectibles etc.)</label>
+      <input type="number" id="A12" name="A12">
+      <label for="A13">A13. How much do you expect to spend in non-recurring expenses in the next 5 years? (E.g., Purchase of real estate, pension plans etc.)</label>
+      <input type="number" id="A13" name="A13">
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(15)">
+        <input type="button" value="Next" class="styled-button" onclick="nextSection(3)">
+    </div>
+
+    <div class="section" id="section3">
+      <h2>Section B: Confidence</h2>
+      <label>B1. Suppose that you are considering investing €20,000. You are selecting one investment from the six possibilities shown below...</label>
+      <div class="radio-group">
+        <input type="radio" id="B1" name="B1" value="1">
+        <label for="B1">Investment A: 20,000 | 20,000</label><br>
+        <input type="radio" id="B1" name="B1" value="2">
+        <label for="B1">Investment B: 19,000 | 24,000</label><br>
+        <input type="radio" id="B1" name="B1" value="3">
+        <label for="B1">Investment C: 18,000 | 31,000</label><br>
+        <input type="radio" id="B1" name="B1" value="4">
+        <label for="B1">Investment D: 17,000 | 38,000</label><br>
+        <input type="radio" id="B1" name="B1" value="5">
+        <label for="B1">Investment E: 15,000 | 45,000</label><br>
+        <input type="radio" id="B1" name="B1" value="6">
+        <label for="B1">Investment F: 14,000 | 52,000</label><br>
+      </div>
+      <label for="borrow">B2. Would you borrow money for the purpose of making an investment (other than a mortgage) in the future?</label>
+      <div class="radio-group">
+        <input type="radio" id="borrowYes" name="B2" value="5">
+        <label for="borrowYes">Yes</label><br>
+        <input type="radio" id="borrowNo" name="B2" value="1">
+        <label for="borrowNo">No</label><br>
+      </div>
+      <label for="confidenceIndex">B3. How would you rate the degree of risk you are willing to take in your financial affairs?</label>
+      <div class="radio-group">
+        <input type="radio" id="investmentA" name="B3" value="1">
+        <label for="investmentA">1. Extremely low</label><br>
+        <input type="radio" id="investmentB" name="B3" value="2">
+        <label for="investmentB">2. Low</label><br>
+        <input type="radio" id="investmentC" name="B3" value="3">
+        <label for="investmentC">3. Moderate</label><br>
+        <input type="radio" id="investmentD" name="B3" value="4">
+        <label for="investmentD">4. High risk</label><br>
+        <input type="radio" id="investmentE" name="B3" value="5">
+        <label for="investmentE">5. Extremely High risk</label><br>
+      </div>
+      <label for="confidenceIndex">B4. Financial advisers usually invest money (in a ‘portfolio’) across a spread of investments...</label>
+      <div class="radio-group">
+        <input type="radio" id="investmentA" name="B4" value="1">
+        <label for="investmentA">Portfolio 1</label><br>
+        <input type="radio" id="investmentB" name="B4" value="2">
+        <label for="investmentB">Portfolio 2</label><br>
+        <input type="radio" id="investmentC" name="B4" value="3">
+        <label for="investmentC">Portfolio 3</label><br>
+        <input type="radio" id="investmentD" name="B4" value="4">
+        <label for="investmentD">Portfolio 4</label><br>
+        <input type="radio" id="investmentE" name="B4" value="5">
+        <label for="investmentE">Portfolio 5</label><br>
+      </div>
+      <label for="confidenceIndex">B5. To what extent are you willing to forego potentially large gains if it means the value of your investment is secure?</label>
+      <div class="radio-group">
+        <input type="radio" id="investmentA" name="B5" value="1">
+        <label for="investmentA">1. I strongly agree</label><br>
+        <input type="radio" id="investmentB" name="B5" value="2">
+        <label for="investmentB">2. I agree</label><br>
+        <input type="radio" id="investmentC" name="B5" value="3">
+        <label for="investmentC">3. I neither agree or disagree</label><br>
+        <input type="radio" id="investmentD" name="B5" value="4">
+        <label for="investmentD">4. I disagree</label><br>
+        <input type="radio" id="investmentE" name="B5" value="5">
+        <label for="investmentE">5. I strongly disagree</label><br>
+      </div>
+      <label for="confidenceIndex">B6. Have you ever borrowed money for the purposes of making an investment? (Other than a mortgage)</label>
+      <div class="radio-group">
+        <input type="radio" id="Yes" name="B6" value="5">
+        <label for="investmentA">1. I strongly agree</label><br>
+        <input type="radio" id="No" name="B6" value="1">
+        <label for="investmentB">2. I agree</label><br>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(2)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(4)">
+    </div>
+
+    <div class="section" id="section4">
+      <h2>Section C: Impulsivity</h2>
+      <label>C1. In comparison with other people you're willing to make riskier investment than other people.</label>
+      <div class="radio-group">
+        <input type="radio" id="impulsivityNever" name="C1" value="1">
+        <label for="impulsivityNever">Never</label><br>
+        <input type="radio" id="impulsivityRarely" name="C1" value="2">
+        <label for="impulsivityRarely">Rarely</label><br>
+        <input type="radio" id="impulsivitySometimes" name="C1" value="3">
+        <label for="impulsivitySometimes">Sometimes</label><br>
+        <input type="radio" id="impulsivityOften" name="C1" value="4">
+        <label for="impulsivityOften">Often</label><br>
+        <input type="radio" id="impulsivityAlways" name="C1" value="5">
+        <label for="impulsivityAlways">Always</label><br>
+      </div>
+      <label for="impulsiveInvestments">C2. What is the current amount of insurance you buy? (Home insurance, health Insurance, pet insurance, travel insurance etc.</label>
+      <div class="radio-group">
+        <input type="radio" id="1. Much more than most people I know" name="C2" value="1">
+        <label for="1. Much more than most people I know">1. Much more than most people I know</label><br>
+        <input type="radio" id="2. More than most people I know" name="C2" value="2">
+        <label for="2. More than most people I know">2. More than most people I know</label><br>
+        <input type="radio" id="3. About the same as most people I know" name="C2" value="3">
+        <label for="3. About the same as most people I know">3. About the same as most people I know</label><br>
+        <input type="radio" id="4. Less than most people I know" name="C2" value="4">
+        <label for="4. Less than most people I know">4. Less than most people I know</label><br>
+        <input type="radio" id="5. Much less than people I know" name="C2" value="5">
+        <label for="5. Much less than people I know">5. Much less than people I know</label><br>
+      </div>
+      <label for="large loss">C3. I can tolerate the risk of large losses in my investments in order to increase the likelihood of achieving high returns.</label>
+      <div class="radio-group">
+        <input type="radio" id="1. I strongly disagree" name="C3" value="1">
+        <label for="1. I strongly disagree">1. I strongly disagree</label><br>
+        <input type="radio" id="2. I disagree" name="C3" value="2">
+        <label for="2. I disagree">2. I disagree</label><br>
+        <input type="radio" id="3. I neither agree or disagree" name="C3" value="3">
+        <label for="3. About the same as most people I know">3. About the same as most people I know</label><br>
+        <input type="radio" id="4. I agree" name="C3" value="4">
+        <label for="4. I agree">4. I agree</label><br>
+        <input type="radio" id="5. I strongly agree" name="C3" value="5">
+        <label for="5. I strongly agree">5. I strongly agree</label><br>
+      </div>
+      <label for="insurance amount">C4. What is the amount of insurance you plan to buy? (Home insurance, health insurance, pet insurance, travel insurance, etc.)</label>
+      <div class="radio-group">
+        <input type="radio" id="1. Much more than most people I know" name="C4" value="1">
+        <label for="1. Much more than most people I know">1. Much more than most people I know</label><br>
+        <input type="radio" id="2. More than most people I know" name="C4" value="2">
+        <label for="2. More than most people I know">2. More than most people I know</label><br>
+        <input type="radio" id="3. About the same as most people I know" name="C4" value="3">
+        <label for="3. About the same as most people I know">3. About the same as most people I know</label><br>
+        <input type="radio" id="4. Less than most people I know" name="C4" value="4">
+        <label for="4. Less than most people I know">4. Less than most people I know</label><br>
+        <input type="radio" id="5. Much less than most people I know" name="C4" value="5">
+        <label for="5. Much less than most people I know">5. Much less than most people I know</label><br>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(3)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(5)">
+    </div>
+
+    <div class="section" id="section5">
+      <h2>Section D: Familiarity Preferences</h2>
+      <label for="risk degree">D1. What degree of risk would you say you have taken with previous financial decisions?</label>
+      <div class="radio-group">
+        <input type="radio" id="1. Very small" name="D1" value="1>
+        <label for="1. Very small">1. Very small</label><br>
+        <input type="radio" id="2. Small" name="D1" value="2">
+        <label for="2. Small">2. Small</label><br>
+        <input type="radio" id="3. Moderate" name="D1" value="3">
+        <label for="3. Moderate">3. Moderate</label><br>
+        <input type="radio" id="4. Large" name="D1" value="4">
+        <label for="4. Large">4. Large</label><br>
+        <input type="radio" id="5. Very large" name="D1" value="5">
+        <label for="5. Very large">5. Very large</label><br>
+      </div>
+      <label for="risk vs gains">D2. What is more important to you in the context of investing: the risk or the potential gains?</label>
+      <div class="radio-group">
+        <input type="radio" id="1. I always focus on the risk as opposed to gains" name="D2" value="1">
+        <label for="1. I always focus on the risk as opposed to gains">1. I always focus on the risk as opposed to gains</label><br>
+        <input type="radio" id="2. I usually focus on the risk rather than the potential gains" name="D2" value="2">
+        <label for="2. I usually focus on the risk rather than the potential gains">2. I usually focus on the risk rather than the potential gains</label><br>
+        <input type="radio" id="3. I focus on the risk and potential gains equally" name="D2" value="3">
+        <label for="3. I focus on the risk and potential gains equally">3. I focus on the risk and potential gains equally</label><br>
+        <input type="radio" id="4. I usually focus on the potential gains rather than the risk" name="D2" value="4">
+        <label for="4. I usually focus on the potential gains rather than the risk">4. I usually focus on the potential gains rather than the risk</label><br>
+        <input type="radio" id="5. I always focus on the gains rather than the risk" name="D2" value="5">
+        <label for="5. I always focus on the gains rather than the risk">5. I always focus on the gains rather than the risk</label><br>
+      </div>
+      <label for="portfolio choice">D3. The graphs below show the performance of four hypothetical portfolios over a ten year period...</label>
+      <div class="radio-group">
+        <input type="radio" id="portfolio A" name="D3" value="1">
+        <label for="portfolio A">Portfolio A</label><br>
+        <input type="radio" id="portfolio B" name="D3" value="2">
+        <label for="portfolio B">Portfolio B</label><br>
+        <input type="radio" id="portfolio C" name="D3" value="3.5">
+        <label for="portfolio C">Portfolio C</label><br>
+        <input type="radio" id="portfolio D" name="D3" value="5">
+        <label for="portfolio D">Portfolio D</label><br>
+      </div>
+      <label for="future risk degree">D4. What degree of risk do you wish to take with your future financial decisions?</label>
+      <div class="radio-group">
+        <input type="radio" id="1. A very small amount of risk with very small potential returns" name="D4" value="1">
+        <label for="1. A very small amount of risk with very small potential returns">1. A very small amount of risk with very small potential returns</label><br>
+        <input type="radio" id="2. A small amount of risk with small potential returns" name="D4" value="2">
+        <label for="2. A small amount of risk with small potential returns">2. A small amount of risk with small potential returns</label><br>
+        <input type="radio" id="3. A moderate amount of risk with moderate potential returns" name="D4" value="3">
+        <label for="3. A moderate amount of risk with moderate potential returns">3. A moderate amount of risk with moderate potential returns</label><br>
+        <input type="radio" id="4. A large amount of risk with large potential returns" name="D4" value="4">
+        <label for="4. A large amount of risk with large potential returns">4. A large amount of risk with large potential returns</label><br>
+        <input type="radio" id="5. A very large amount of risk with very large potential returns" name="D4" value="5">
+        <label for="5. A very large amount of risk with very large potential returns">5. A very large amount of risk with very large potential returns</label><br>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(4)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(6)">
+    </div>
+
+    <div class="section" id="section6">
+      <h2>Section E: Composure</h2> 
+      <h4>Composure is a measure of an investor's tendency to become anxious during their investment journey...</h4>
+      <hr>
+      <label for="investment drop">E1. Experts tell us that as the value of investments can go up and down...</label>
+      <div class="radio-group">
+        <fieldset>
+          <legend>5% Drop</legend>
+          <div class="radio-options">
+            <input type="radio" id="5%_1" name="E1a" value="1">
+            <label for="5%_1">1</label>
+            <input type="radio" id="5%_2" name="E1a" value="2">
+            <label for="5%_2">2</label>
+            <input type="radio" id="5%_3" name="E1a" value="3">
+            <label for="5%_3">3</label>
+            <input type="radio" id="5%_4" name="E1a" value="4">
+            <label for="5%_4">4</label>
+            <input type="radio" id="5%_5" name="E1a" value="5">
+            <label for="5%_5">5</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>10% Drop</legend>
+          <div class="radio-options">
+            <input type="radio" id="10%_1" name="E1b" value="1">
+            <label for="10%_1">1</label>
+            <input type="radio" id="10%_2" name="E1b" value="2">
+            <label for="10%_2">2</label>
+            <input type="radio" id="10%_3" name="E1b" value="3">
+            <label for="10%_3">3</label>
+            <input type="radio" id="10%_4" name="E1b" value="4">
+            <label for="10%_4">4</label>
+            <input type="radio" id="10%_5" name="E1b" value="5">
+            <label for="10%_5">5</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>20% Drop</legend>
+          <div class="radio-options">
+            <input type="radio" id="20%_1" name="E1c" value="1">
+            <label for="20%_1">1</label>
+            <input type="radio" id="20%_2" name="E1c" value="2">
+            <label for="20%_2">2</label>
+            <input type="radio" id="20%_3" name="E1c" value="3">
+            <label for="20%_3">3</label>
+            <input type="radio" id="20%_4" name="E1c" value="4">
+            <label for="20%_4">4</label>
+            <input type="radio" id="20%_5" name="E1c" value="5">
+            <label for="20%_5">5</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>40% Drop</legend>
+          <div class="radio-options">
+            <input type="radio" id="40%_1" name="E1d" value="1">
+            <label for="40%_1">1</label>
+            <input type="radio" id="40%_2" name="E1d" value="2">
+            <label for="40%_2">2</label>
+            <input type="radio" id="40%_3" name="E1d" value="3">
+            <label for="40%_3">3</label>
+            <input type="radio" id="40%_4" name="E1d" value="4">
+            <label for="40%_4">4</label>
+            <input type="radio" id="40%_5" name="E1d" value="5">
+            <label for="40%_5">5</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>50% or more Drop</legend>
+          <div class="radio-options">
+            <input type="radio" id="50%_1" name="E1e" value="1">
+            <label for="50%_1">1</label>
+            <input type="radio" id="50%_2" name="E1e" value="2">
+            <label for="50%_2">2</label>
+            <input type="radio" id="50%_3" name="E1e" value="3">
+            <label for="50%_3">3</label>
+            <input type="radio" id="50%_4" name="E1e" value="4">
+            <label for="50%_4">4</label>
+            <input type="radio" id="50%_5" name="E1e" value="5">
+            <label for="50%_5">5</label>
+          </div>
+        </fieldset>
+      </div>
+      <hr>
+      <label for="investment horizon">E2. If you didn’t require access to your invested capital for at least six years in the future...</label>
+      <div class="radio-group">
+        <fieldset>
+          <legend>Response</legend>
+          <div class="radio-options">
+            <input type="radio" id="any loss" name="E2" value="1">
+            <label for="any loss">1. I would cash it in if there was any loss in value</label>
+            <input type="radio" id="6 months" name="E2" value="2">
+            <label for="6 months">2. Up to 6 months</label>
+            <input type="radio" id="1 year" name="E2" value="3">
+            <label for="1 year">3. Up to 1 year</label>
+            <input type="radio" id="2 years" name="E2" value="4">
+            <label for="2 years">4. Up to 2 years</label>
+            <input type="radio" id="more than 5 years" name="E2" value="5">
+            <label for="more than 5 years">5. More than 5 years</label>
+          </div>
+        </fieldset>
+      </div>
+      <label for="stock drop">E3. If my stocks and shares dropped 20%, I would take that as a good time to:</label>
+      <div class="radio-group">
+        <fieldset>
+          <legend>Choose an option</legend>
+          <div class="radio-options">
+            <input type="radio" id="sell" name="E3" value="1">
+            <label for="sell">1. Sell them</label>
+            <input type="radio" id="do nothing" name="E3" value="3">
+            <label for="do nothing">2. Do nothing</label>
+            <input type="radio" id="buy more" name="E3" value="5">
+            <label for="buy more">3. Buy more</label>
+          </div>
+        </fieldset>
+      </div>
+      <label for="stock rise">E4. If the value of your stocks rose 10% in one day, how likely are you to sell? Please rate your likelihood 1-5 (1=very low, 5=very high).</label>
+      <div class="radio-group">
+        <fieldset>
+          <legend>Likelihood to Sell</legend>
+          <div class="radio-options">
+            <input type="radio" id="1" name="E4" value="1">
+            <label for="1">1</label>
+            <input type="radio" id="2" name="E4" value="2">
+            <label for="2">2</label>
+            <input type="radio" id="3" name="E4" value="3">
+            <label for="3">3</label>
+            <input type="radio" id="4" name="E4" value="4">
+            <label for="4">4</label>
+            <input type="radio" id="5" name="E4" value="5">
+            <label for="5">5</label>
+          </div>
+        </fieldset>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(5)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(7)">
+    </div>
+
+    <div class="section" id="section7">
+      <h2>Section F: Experience & Knowledge</h2>
+      <h4>Experience & Knowledge section are used to give us an idea of how confident we should be in the investors ability to assess their true risk tolerance.</h4>
+      <label for="investment types">F1. Which of the following have you invested in previously? (Select all that apply)</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="liquidity" name="F1a" value="Liquidity and money market products">
+        <label for="liquidity">Liquidity and money market products</label>
+        <input type="checkbox" id="bonds" name="F1b" value="Bonds (including bond funds)">
+        <label for="bonds">Bonds (including bond funds)</label>
+        <input type="checkbox" id="equity" name="F1c" value="Equity (including equity funds)">
+        <label for="equity">Equity (including equity funds)</label>
+        <input type="checkbox" id="multi-asset" name="F1d" value="Multi asset class funds (including strategy funds)">
+        <label for="multi-asset">Multi asset class funds (including strategy funds)</label>
+        <input type="checkbox" id="precious-metals" name="F1e" value="Precious metals and commodities (including funds)">
+        <label for="precious-metals">Precious metals and commodities (including funds)</label>
+        <input type="checkbox" id="hedge-funds" name="F1f" value="Hedge funds">
+        <label for="hedge-funds">Hedge funds</label>
+        <input type="checkbox" id="private-markets" name="F1g" value="Private markets">
+        <label for="private-markets">Private markets</label>
+        <input type="checkbox" id="real-estate" name="F1h" value="Real estate (including funds)">
+        <label for="real-estate">Real estate (including funds)</label>
+        <input type="checkbox" id="structured-products" name="F1i" value="Structured products (protection, optimisation...)">
+        <label for="structured-products">Structured products (protection, optimisation...)</label>
+        <input type="checkbox" id="derivatives" name="F1j" value="Other derivatives">
+        <label for="derivatives">Other derivatives</label>
+      </div>
+      <label for="financial knowledge">F2. Have you gained any of your financial knowledge from the following? (Tick all that apply)</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="course-degree" name="F2a" value="Course or Degree">
+        <label for="course-degree">Course or Degree</label>
+        <input type="checkbox" id="professional-experience" name="F2b" value="Professional Experience">
+        <label for="professional-experience">Professional Experience</label>
+        <input type="checkbox" id="personal-investing" name="F2c" value="Personal Investing">
+        <label for="personal-investing">Personal Investing</label>
+        <input type="checkbox" id="reading" name="F2d" value="Reading books / websites / articles">
+        <label for="reading">Reading books / websites / articles</label>
+      </div>
+      <div class="radio-group">
+        <label for="stock-fixed-income">F3. Stock generally provides fixed income akin to bonds?</label>
+        <div class="radio-options">
+          <input type="radio" id="stock-fixed-income-agree" name="F3" value="1">
+          <label for="stock-fixed-income-agree">Agree</label>
+          <input type="radio" id="stock-fixed-income-disagree" name="F3" value="5">
+          <label for="stock-fixed-income-disagree">Disagree</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="diversification">F4. Diversification is a strategy that reduces risk of investments</label>
+        <div class="radio-options">
+          <input type="radio" id="diversification-agree" name="F4" value="1">
+          <label for="diversification-agree">Agree</label>
+          <input type="radio" id="diversification-disagree" name="F4" value="5">
+          <label for="diversification-disagree">Disagree</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="financial-knowledge">F5. What level of financial knowledge would you say you have?</label>
+        <div class="radio-options-vertical">
+          <input type="radio" id="basic" name="F5" value="Basic">
+          <label for="basic">Basic</label>
+          <input type="radio" id="reasonable" name="F5" value="Reasonable">
+          <label for="reasonable">Reasonable</label>
+          <input type="radio" id="expert" name="F5" value="Expert">
+          <label for="expert">Expert</label>
+          <input type="radio" id="none" name="F5" value="None">
+          <label for="none">None</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="risk-tolerance">F6. A higher risk tolerance means an investor is willing to accept greater volatility for the potential of higher returns.</label>
+        <div class="radio-options">
+          <input type="radio" id="risk-tolerance-agree" name="F6" value="1">
+          <label for="risk-tolerance-agree">Agree</label>
+          <input type="radio" id="risk-tolerance-disagree" name="F6" value="5">
+          <label for="risk-tolerance-disagree">Disagree</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="interest-rates">F7. An increase in interest rates typically leads to a decrease in bond price?</label>
+        <div class="radio-options">
+          <input type="radio" id="interest-rates-agree" name="F7" value="1">
+          <label for="interest-rates-agree">Agree</label>
+          <input type="radio" id="interest-rates-disagree" name="F7" value="5">
+          <label for="interest-rates-disagree">Disagree</label>
+        </div>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(6)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(8)">
+    </div>
+
+    <div class="section" id="section8">
+      <h2>Section G: Impact Desire</h2>
+      <div class="radio-group">
+        <label for="esg-importance">G1. On a scale of 1-5, how important is it that your investments align with ESG principles?</label>
+        <div class="radio-options">
+          <input type="radio" id="esg-1" name="G1" value="1">
+          <label for="esg-1">1</label>
+          <input type="radio" id="esg-2" name="G1" value="2">
+          <label for="esg-2">2</label>
+          <input type="radio" id="esg-3" name="G1" value="3">
+          <label for="esg-3">3</label>
+          <input type="radio" id="esg-4" name="G1" value="4">
+          <label for="esg-4">4</label>
+          <input type="radio" id="esg-5" name="G1" value="5">
+          <label for="esg-5">5</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="avoid-industries">G2. Would you prefer to avoid industries that are harmful to the environment?</label>
+        <div class="radio-options">
+          <input type="radio" id="avoid-yes" name="G2" value="1">
+          <label for="avoid-yes">Yes</label>
+          <input type="radio" id="avoid-no" name="G2" value="5">
+          <label for="avoid-no">No</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="exclude-industries">G3. Are there industries or companies you would like to exclude from your investments? (e.g., tobacco, weapons, gambling) Please list any exclusions:</label>
+        <div class="radio-options-vertical">
+          <input type="radio" id="exclude-yes" name="G3" value="1">
+          <label for="exclude-yes">Yes</label>
+          <input type="radio" id="exclude-no" name="G3" value="5">
+          <label for="exclude-no">No</label>
+        </div>
+        <textarea id="exclusions" name="exclusions" class="text-area" rows="4" cols="50" placeholder="List any exclusions here..."></textarea>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(7)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(9)">
+    </div>
+
+    <div class="section" id="section9">
+      <h2>Section H: Impact Apprehension</h2>
+      <h4>How confident are investors in sustainable investing.</h4>
+      <div class="radio-group">
+        <label for="esg-familiarity">H1. How familiar are you with ESG investing? (1=not familiar, 5=Investor/Professional)</label>
+        <div class="radio-options">
+          <input type="radio" id="esg-1" name="H1" value="1">
+          <label for="esg-1">1</label>
+          <input type="radio" id="esg-2" name="H1" value="2">
+          <label for="esg-2">2</label>
+          <input type="radio" id="esg-3" name="H1" value="3">
+          <label for="esg-3">3</label>
+          <input type="radio" id="esg-4" name="H1" value="4">
+          <label for="esg-4">4</label>
+          <input type="radio" id="esg-5" name="H1" value="5">
+          <label for="esg-5">5</label>
+        </div>
+      </div>
+      <div class="radio-group">
+        <label for="tech-comfort">H2. If a technology is unproven yet suspected to improve impact metrics, how comfortable would you feel investing in it?</label>
+        <div class="radio-options-vertical">
+          <input type="radio" id="tech-very-apprehensive" name="H2" value="1">
+          <label for="tech-very-apprehensive">Very apprehensive</label>
+          <input type="radio" id="tech-somewhat-apprehensive" name="H2" value="2">
+          <label for="tech-somewhat-apprehensive">Somewhat apprehensive</label>
+          <input type="radio" id="tech-neither" name="H2" value="3">
+          <label for="tech-neither">Neither apprehensive or confident</label>
+          <input type="radio" id="tech-somewhat-confident" name="H2" value="4">
+          <label for="tech-somewhat-confident">Somewhat confident</label>
+          <input type="radio" id="tech-very-confident" name="H2" value="5">
+          <label for="tech-very-confident">Very confident</label>
+        </div>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(8)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(10)">
+    </div>
+
+    <div class="section" id="section10">
+      <h2>Section I: Impact Trade-off</h2>
+      <h4> How willing are investors willing to trade-off monetary gain for impact gain?</h4>
+      <div class="radio-group">
+        <label for="avoid-industries-financial-loss">I1. Would you prefer to avoid industries that are harmful to the environment with a possible loss of financial gains?</label>
+        <div class="radio-options">
+          <input type="radio" id="avoid-industries-yes" name="I1" value="Yes">
+          <label for="avoid-industries-yes">Yes</label>
+          <input type="radio" id="avoid-industries-no" name="I1" value="No">
+          <label for="avoid-industries-no">No</label>
+        </div>
+      </div>
+        <input type="button" value="Previous" class="styled-button" onclick="prevSection(9)">
+  <input type="button" value="Next" class="styled-button" onclick="nextSection(11)">
+    </div>
+
+    <div class="section" id="section11">
+      <h2>Section J: Need for evidence of impact</h2>
+      <div class="radio-group">
+        <label for="reporting-requirements">J1. What type of reporting requirements do you expect?</label>
+        <div class="checkbox-group">
+          <input type="checkbox" id="carbon-accounting" name="J1a" value="Carbon accounting">
+          <label for="carbon-accounting">Carbon accounting</label>
+          <input type="checkbox" id="impact-audits" name="J1b" value="Independent impact audits">
+          <label for="impact-audits">Independent impact audits</label>
+          <input type="checkbox" id="social-accounting" name="J1c" value="Social accounting">
+          <label for="social-accounting">Social accounting</label>
+          <input type="checkbox" id="governance-reporting" name="J1d" value="Governance reporting">
+          <label for="governance-reporting">Governance reporting</label>
+          <input type="checkbox" id="quota-auditing" name="J1e" value="Quota auditing">
+          <label for="quota-auditing">Quota auditing</label>
+        </div>
+      </div>
+        <input type="submit" id="submitButton" value="Submit">
+        <div id="loadingSpinner" style="display: none;"></div>
+    </div>
+  </form>
+
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.slice(1);
+            const queryArray = queryString.split('&');
+            queryArray.forEach(param => {
+                const [key, value] = param.split('=');
+                if (key && value) {
+                    params[decodeURIComponent(key)] = decodeURIComponent(value);
+                }
+            });
+            return params;
+        }
+
+        // Extract username and email from URL parameters
+        const params = getQueryParams();
+        const CLusername = params['CLname'];
+        const CLemail = params['CLemail'];
+        const WMusename = params['WMusename'];
+
+        const CLusernameDecrypt = await decrypt(CLusername);
+  
+
+        // Display welcome message based on URL parameters
+        if (CLusername) {
+            document.getElementById('welcome-message').innerText = 'Welcome, ' + CLusernameDecrypt + '!';
+        }
+
+        document.getElementById('surveyForm').onsubmit = function(event) {
+          event.preventDefault();
+
+          // Show the loading spinner and hide the submit button
+          const submitButton = document.getElementById('submitButton');
+          const loadingSpinner = document.getElementById('loadingSpinner');
+
+          submitButton.style.display = 'none'; // Hide the submit button
+          loadingSpinner.style.display = 'inline-block'; // Show the loading spinner
+          submitButton.disabled = true; // Disable the button to prevent further clicks
+
+          // Collect form data and send it to the server
+          const formData = new FormData(event.target);
+          const data = {};
+          formData.forEach((value, key) => {
+              if (data[key]) {
+                  // Handle multiple values (checkboxes)
+                  data[key] = Array.isArray(data[key]) ? data[key] : [data[key]];
+                  data[key].push(value);
+              } else {
+                  data[key] = value;
+              }
+          });
+
+          // Add the username and email to the data object from URL parameters
+          if (CLusername) {
+              data.CLusername = CLusername;
+          }
+          if (CLemail) {
+              data.CLemail = CLemail;
+          }
+          if (WMusename) {
+              data.WMusename = WMusename;
+          }
+
+          console.log('Sending data to the server:', data); // Log the data being sent
+
+          // Send data to Flask server
+          fetch('/submitlink', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(result => {
+              alert('Form submitted!');
+              console.log(result);
+
+              // Redirect after successful submission
+              window.location.href = '/thankyoug';
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          })
+          .finally(() => {
+              // Re-enable the button and hide the spinner after processing
+              submitButton.style.display = 'inline-block'; // Show the submit button
+              loadingSpinner.style.display = 'none'; // Hide the loading spinner
+              submitButton.disabled = false; // Re-enable the button
+            });
+        };
+      });
+
+
+
+
+
+    function nextSection(sectionNumber) {
+      const currentSection = document.querySelector('.section.active');
+      const nextSection = document.getElementById(`section${sectionNumber}`);
+
+      if (currentSection) {
+        currentSection.classList.remove('active');
+      }
+
+      if (nextSection) {
+        nextSection.classList.add('active');
+      }
+    }
+
+    function prevSection(sectionNumber) {
+    const currentSection = document.querySelector('.section.active');
+    const prevSection = document.getElementById(`section${sectionNumber}`);
+
+    if (currentSection) {
+      currentSection.classList.remove('active');
+    }
+
+    if (prevSection) {
+      prevSection.classList.add('active');
+    }
+  }
+
+    // Initially show the first section
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('.section').classList.add('active');
+    });
+
+
+
+    async function decrypt(data) {
+          try {
+              const response = await fetch('/decrypt', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ encrypted_data: data })
+              });
+              const result = await response.json();
+              return result.decrypted_data;  // Correct property name
+          } catch (error) {
+              console.error("Error during encryption: ", error);
+          }
+      }
+
+      function validateSection15() {
+    const noneOfTheAbove = document.getElementById('option4');
+    
+    if (noneOfTheAbove.checked) {
+        window.location.href = 'errorWithFinances.html'; // Redirect to the error page
+    } else {
+        nextSection(2); // Move to the next section if valid
+    }
+}
+
+   </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en">
+  <head>
+    <title>Vexra Wealth</title>
+    
+    <meta charset="utf-8">
+    <meta name="description" content="Toby Tangney (CTO), Michael Scahill (CMO), and Arthur Guinness (CMO) developed Vexra to help wealth managers and financial advisors transform their outdated paper-based processes into automated workflows that seamlessly integrate with their backend CRM systems.">
+    <meta name="author" content="Toby Tangney (CTO), Michael Scahill (CMO), Arthur Guinness (CMO)">
+    <meta name="keywords" content="Vexra Wealth, Vexra, Patch, Dog Patch Labs, Toby Tangney, Michael Scahill, Arthur Guinness, Wealth Management, Financial Advisors, Automation, CRM Integration">
+
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7CLato:300,300italic,400,400italic,700,900%7CPlayfair+Display:700italic,900">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+    <style>
+
+.logo-wrapper,
+.address-wrapper,
+.contact-wrapper {
+    flex: 1; /* Make all three wrappers equal width */
+    max-width: 33.33%; /* Ensure they each take up one-third of the available space */
+    text-align: center;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.address-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row.justify-content-center {
+    display: flex;
+    justify-content: space-between; /* Distribute space between the three elements */
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .row.justify-content-center {
+        flex-direction: column;
+    }
+    
+    .logo-wrapper,
+    .address-wrapper,
+    .contact-wrapper {
+        max-width: 100%; /* Make them full width on smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+
+      .responsive-logo {
+            max-width: 100%; /* Allow the image to scale down to fit its container */
+            height: auto;   /* Maintain aspect ratio */
+            width: 189px;   /* Set a default width */
+            max-height: 30px; /* Set a max height */
+        }
+
+        @media (max-width: 768px) {
+            .responsive-logo {
+                width: 150px;  /* Adjust the default width for smaller screens */
+                max-height: 24px; /* Adjust the max height for smaller screens */
+            }
+        }
+
+
+        .responsive-image {
+          display: block;
+          max-width: 100%;
+          height: auto;
+          margin: 0 auto;
+          filter: none; /* Ensure no filters are applied that could reduce clarity */
+        }
+
+      /* High-DPI display support */
+      @media only screen and (-webkit-min-device-pixel-ratio: 2),
+            only screen and (min--moz-device-pixel-ratio: 2),
+            only screen and (-o-min-device-pixel-ratio: 2/1),
+            only screen and (min-device-pixel-ratio: 2),
+            only screen and (min-resolution: 192dpi),
+            only screen and (min-resolution: 2dppx) {
+          .responsive-image {
+              image-rendering: -webkit-optimize-contrast;
+              image-rendering: crisp-edges;
+              image-rendering: pixelated;
+          }
+       }
+       
+
+
+
+    </style>
+    </style>
+  </head>
+  <body>
+    <div class="preloader">
+      <div id="spinningSquaresG">
+        <div class="spinningSquaresG" id="spinningSquaresG_1"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_2"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_3"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_4"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_5"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_6"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_7"></div>
+        <div class="spinningSquaresG" id="spinningSquaresG_8"></div>
+      </div>
+    </div>
+
+
+    <div class="page">
+
+
+      <header class="page-head">
+        <div class="rd-navbar-wrap">
+            <nav class="rd-navbar rd-navbar-default">
+                <div class="rd-navbar-inner">
+                    <div class="rd-navbar-panel">
+                        <a class="rd-navbar-brand brand" href="{{ url_for('index') }}">
+                            <img src="{{ url_for('static', filename='images/Vexra-transformed.png') }}" alt="Vexra" class="responsive-logo"/>
+                        </a>
+                    </div>
+                    <div class="rd-navbar-group rd-navbar-search-wrap">
+                        <div class="rd-navbar-nav-wrap">
+                            <div class="rd-navbar-nav-inner">
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="mailto:info.vexra@gmail.com">Contact us</a></li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="{{ url_for('Sign_Up') }}">Log in / Sign Up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+      </header>
+      <section class="swiper-container swiper-slider swiper-variant-1 bg-black" data-autoplay="5500" data-simulate-touch="true" data-swiper="{&quot;loop&quot;:false}">
+        <div class="swiper-wrapper text-center">
+          <div class="swiper-slide" data-slide-bg="{{ url_for('static', filename='images/home-slider-1-slide-1.jpg') }}">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-11 col-lg-10 col-xl-9">
+                    <h2 class="slider-header" data-caption-animate="fadeInUp" data-caption-delay="0s">Welcome to Vexra</h2>
+                    <p class="text-bigger slider-text" data-caption-animate="fadeInUp" data-caption-delay="100">The smartest and most flexible solution to the client on boarding process you've ever seen. Vexra strives to remove the drudgery from Wealth Managment.</p>
+                    <div class="group-xl-responsive"><a class="button button-xl button-white-outline-variant-1" data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey">Start a journey</a><a class="button button-xl button-primary-contrast" data-caption-animate="fadeInUp" data-caption-delay="250" href="mailto:info.vexra@gmail.com" target="_blank">Get Vexra now</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="{{ url_for('static', filename='images/home-slider-1-slide-2.jpg') }}">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-11 col-lg-10 col-xl-9">
+                    <h2 class="slider-header" data-caption-animate="fadeInUp" data-caption-delay="0s">Streamline Your Client Onboarding Process</h2>
+                    <p class="text-bigger slider-text" data-caption-animate="fadeInUp" data-caption-delay="100">We focus on eliminating complexity while saving time on simple tasks without relying on over-engineered AI systems.</p>
+                    <div class="group-xl-responsive"><a class="button button-xl button-white-outline-variant-1" data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey">Start a journey</a><a class="button button-xl button-primary-contrast" data-caption-animate="fadeInUp" data-caption-delay="250" href="mailto:info.vexra@gmail.com" target="_blank">Get Vexra now</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" data-slide-bg="{{ url_for('static', filename='images/home-slider-1-slide-3.jpg') }}">
+            <div class="swiper-slide-caption">
+              <div class="container">
+                <div class="row justify-content-md-center">
+                  <div class="col-md-11 col-lg-10 col-xl-9">
+                    <h2 class="slider-header" data-caption-animate="fadeInUp" data-caption-delay="0s">The Future Of Wealth Managment</h2>
+                    <p class="text-bigger slider-text" data-caption-animate="fadeInUp" data-caption-delay="100">Beautiful and clean reports to be optimized for all customers preferences. Trusted by many.</p>
+                    <div class="group-xl-responsive"><a class="button button-xl button-white-outline-variant-1" data-caption-animate="fadeInUp" data-caption-delay="250" href="#" data-custom-scroll-to="section-start-journey">Get in Touch</a><a class="button button-xl button-primary-contrast" data-caption-animate="fadeInUp" data-caption-delay="250" href="mailto:info.vexra@gmail.com" target="_blank">Get Vexra Now</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
+        <div class="swiper-nav-wrap">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </section>
+    
+      <section class="section section-50 section-md-90 section-xl-top-120 section-xl-bottom-145" id="section-start-journey">
+        <div class="container">
+          <div class="row row-40 row-md-60 align-items-lg-end justify-content-lg-center">
+            <div class="col-md-10 col-lg-5 wow fadeInLeftSmall" data-wow-duration="1s" data-wow-offset="200">
+              <h2 class="text-red-orange">Simple Software</h2>
+              <p class="h3">For Client Onboarding</p>
+              <p class="text-secondary">Today’s current digital onboarding pipeline is fragmented. Requiring you to clump together multipool tools leaving gaps between steps. <br>
+                We bridge these gaps for you, with a simple, low-tech approach for a tenth of the market price.
+                </p>
+              <a class="button button-xl button-primary" href="mailto:info.vexra@gmail.com" target="_blank">Get Vexra Now</a>
+            </div>
+            <div class="col-md-11 col-lg-7">
+              <div class="image-group">
+                  <img src="{{ url_for('static', filename='images/slayout.png') }}" alt="Software Overview" style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />
+              </div>
+            </div>
+          </div>
+         </div>
+      </section>
+      <div class="divider-spectrum"></div>
+      <section class="parallax-container bg-black" data-parallax-img="{{ url_for('static', filename='images/parallax-1.jpg') }}">
+        <div class="parallax-content">
+          <div class="section-50 section-md-75 section-xl-top-100 section-xl-bottom-120">
+            <div class="container">
+              <div class="row justify-content-md-center">
+                <div class="col-md-11 col-lg-10 col-xl-9 text-center">
+                  <h3><span>Ocean</span><em>of</em><span>Possibilities</span></h3>
+                  
+                </div>
+              </div>
+              <div class="row row-40 row-xl-60 offset-xl-top-60">
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-security"></span>
+                    <h5 class="icon-box-header"><a href="#">Security.</a></h5>
+                    <p>We employ robust end-to-end AES encryption for secure data protection.</p>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-build"></span>
+                    <h5 class="icon-box-header"><a href="#">Send form with ease.</a></h5>
+                    <p>With just one click, you can effortlessly send your client the form by generating a link for them.</p>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-palette"></span>
+                    <h5 class="icon-box-header"><a href="#">Manageable questionnaire.</a></h5>
+                    <p>Divided questionnaire, designed to be easily manageable for the client to complete.</p>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-layers"></span>
+                    <h5 class="icon-box-header"><a href="#">CRM integration.</a></h5>
+                    <p>Allowing for custom integration with your current CRM system.</p>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-device_hub"></span>
+                    <h5 class="icon-box-header"><a href="#">Automates overview generation.</a></h5>
+                    <p>Automating the step between the user filling out the form and you looking at the client overview report.</p>
+                  </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                  <article class="icon-box-vertical">
+                    <span class="novi-icon icon icon-primary icon-md material-icons-directions_run"></span>
+                    <h5 class="icon-box-header"><a href="#">Email attachments</a></h5>
+                    <p>Automatically attach the client report to their email whenever they contact you.</p>
+                  </article>
+                </div>
+              </div>
+              <div class="row offset-xl-top-60">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-60 section-md-100 bg-accent novi-background">
+        <div class="container text-center text-lg-start">
+          <div class="row row-30 align-items-md-center justify-content-lg-center">
+            <div class="col-lg-8 col-xl-7">
+              <h3>Vexra Is Exactly What You Need</h3>
+            </div>
+            <div class="col-lg-4 col-xl-3">
+              <a class="button button-xl button-black-outline" href="mailto:info.vexra@gmail.com" target="_blank">Book A Demo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="parallax-container bg-black" data-parallax-img="{{ url_for('static', filename='images/parallax-2.jpg') }}">
+        <div id="aboutusgo" class="parallax-content">
+          <div class="section-60 section-md-100 section-xl-120">
+            <div class="container text-center">
+              <div class="row">
+                <div class="col-sm-12">
+                  <a class="link-circle link-white" data-lightgallery="item" href="https://youtu.be/lcnYUFnk3Hs">
+                    <span class="novi-icon icon icon-xl fl-36-slim-icons-play90"></span>
+                  </a>
+                  <h3>About Us</h3>
+                  <p class="big fw-light">
+                    <span class="d-inline-block" style="max-width: 740px;">
+                      We are a start-up based out of dog patch labs in Dublin, providing first-class service at affordable prices. Our aim is to be used worldwide by companies of any size and type as well as by individuals in the wealth management industry.
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-60 section-md-100 novi-background bg-black">
+        <div class="container">
+
+
+            <div class="row justify-content-center">
+                <div class="col-12 text-center">
+                    <h3 class="section-title">We Aim To:</h3>
+                </div>
+            </div>
+
+          <div class="row row-40">
+            <div class="col-sm-6 col-md-3">
+              <div class="box-counter">
+                <span class="novi-icon icon icon-md icon-primary material-icons-content_copy"></span>
+                <h4 class="box-header">Generate 100s</h4>
+                <h5 class="box-header">Of Styleized Reports</h5>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="box-counter">
+                <span class="novi-icon icon icon-md icon-primary material-icons-mood"></span>
+                <h4 class="box-header">Onboard</h4>
+                <h5 class="box-header">Many Happy Clients</h5>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="box-counter">
+                <span class="novi-icon icon icon-md icon-primary material-icons-access_time"></span>
+                <h4 class="box-header">Save 1000s</h4>
+                <h5 class="box-header">Of Hours Of Labour</h5>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="box-counter">
+                <span class="novi-icon icon icon-md icon-primary material-icons-code"></span>
+                <h4 class="box-header">With</h4>
+                <h5 class="box-header">Sufisticated Code</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section section-50 section-md-90 section-xl-120 bg-gray-lighter novi-background">
+        <div class="container">
+          <div class="text-center">
+            <h3>Meet Our Team</h3>
+            <p>We are a team of developers, designers and leads who love what they do.</p>
+          </div>
+          <div class="row row-40 row-lg-60 justify-content-center">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="thumbnail thumbnail-variant-1">
+                <div class="thumbnail-image">
+                  <img src="{{ url_for('static', filename='images/team-1-189x189.png') }}" alt="" width="189" height="189"/>
+                  <div class="thumbnail-image-inner">
+                    <a class="novi-icon icon icon-md material-icons-local_phone link-primary-inverse-v2" href="tel:#+353 83 310 6992"></a>
+                    <a class="novi-icon icon icon-md-smaller fa-envelope-o link-white" href="mailto:tobytangney@gmail.com"></a>
+                  </div>
+                </div>
+                <div class="thumbnail-caption">
+                  <h5 class="header"><a href="#">Toby Tangney</a></h5>
+                  <h7>Co - Founder (CTO)</h7>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="thumbnail thumbnail-variant-1">
+                <div class="thumbnail-image">
+                  <img src="{{ url_for('static', filename='images/team-2-189x189.png') }}" alt="" width="189" height="189"/>
+                  <div class="thumbnail-image-inner">
+                    <a class="novi-icon icon icon-md material-icons-local_phone link-primary-inverse-v2" href="tel:#+353 83 032 1648"></a>
+                    <a class="novi-icon icon icon-md-smaller fa-envelope-o link-white" href="mailto:michaeljscahill@gmail.com"></a>
+                  </div>
+                </div>
+                <div class="thumbnail-caption">
+                  <h5 class="header"><a href="#">Michael Scahill</a></h5>
+                  <h7>Co - Founder (COO)</h7>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+              <div class="thumbnail thumbnail-variant-1">
+                <div class="thumbnail-image">
+                  <img src="{{ url_for('static', filename='images/team-3-189x189.png') }}" alt="" width="189" height="189"/>
+                  <div class="thumbnail-image-inner">
+                    <a class="novi-icon icon icon-md material-icons-local_phone link-primary-inverse-v2" href="tel:#+44 7496 134537"></a>
+                    <a class="novi-icon icon icon-md-smaller fa-envelope-o link-white" href="mailto:arthur.elveden@student.manchester.ac.uk"></a>
+                  </div>
+                </div>
+                <div class="thumbnail-caption">
+                  <h5 class="header"><a href="#">Arthur Guinness</a></h5>
+                  <h7>Co - Founder (CMO)</h7>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="parallax-container bg-black" data-parallax-img="{{ url_for('static', filename='images/clients-testimonials-parallax-1.jpg') }}">
+        <div class="parallax-content">
+          <div class="section-60 section-md-90 section-xl-120">
+            <div class="container text-center">
+              <h3>What People Say</h3>
+              <div class="row justify-content-lg-center">
+                <div class="col-lg-11 col-xl-9">
+                  <div class="owl-carousel-inverse">
+                    <div class="owl-carousel owl-nav-position-numbering" data-items="1" data-stage-padding="0" data-loop="false" data-margin="30" data-nav="true" data-numbering="#owl-numbering-1" data-animation-in="fadeIn" data-animation-out="fadeOut">
+                      <div class="item">
+                        <blockquote class="quote-minimal quote-minimal-inverse">
+                          <div class="quote-body">
+                            <p>
+                              <q>“It is concerning to see that wealth managers face such hurdles when onboarding clients. Technology can transform the onboarding process by automating and streamlining regulatory checks while integrating consistent onboarding templates in the firm’s platform."</q>
+                            </p>
+                          </div>
+                          <div class="quote-meta">
+                            <cite>Suman Rao</cite>
+                            <p class="caption">Managing director for the UK and Ireland at Avaloq</p>
+                          </div>
+                        </blockquote>
+                      </div>
+                      <div class="item">
+                        <blockquote class="quote-minimal quote-minimal-inverse">
+                          <div class="quote-body">
+                            <p>
+                              <q>“Wealth management has long been an area in need of real innovation"</q>
+                            </p>
+                          </div>
+                          <div class="quote-meta">
+                            <cite>Rebecca Lynn</cite>
+                            <p class="caption">Co-founder and general partner at Canvas Ventures</p>
+                          </div>
+                        </blockquote>
+                      </div>
+                      <div class="item">
+                        <blockquote class="quote-minimal quote-minimal-inverse">
+                          <div class="quote-body">
+                            <p>
+                              <q>“Digital and technology experiences are a big driver of advisor and client experience”</q>
+                            </p>
+                          </div>
+                          <div class="quote-meta">
+                            <cite>Jamie Coulter</cite>
+                            <p class="caption">CEO at Raymond James</p>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </div>
+                    <div class="owl-numbering owl-numbering-default" id="owl-numbering-1">
+                      <div class="numbering-current"></div>
+                      <div class="numbering-separator"></div>
+                      <div class="numbering-count"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-50 section-md-90 section-xl-top-120">
+        <div class="container">
+          <div class="text-center">
+            <h3>Supported By</h3>
+            <p><span class="d-inline-block" style="max-width: 580px;">We are incredbly grateful for all the support offered throughout our journey</span></p>
+          </div>
+          <div class="row row-30">
+            <div class="col-sm-6 col-md-3">
+              <div class="link-image-wrap">
+                <a class="link-image" href="#"><img src="" alt="" width="126" height="68"/></a>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="link-image-wrap">
+                <a class="link-image" href="#"><img src="{{ url_for('static', filename='images/clients-2-126x100.png') }}" alt="" width="126" height="100"/></a>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+              <div class="link-image-wrap">
+                <a class="link-image" href="#"><img src="{{ url_for('static', filename='images/clients-4-169x68.png') }}" alt="" width="169" height="68"/></a>
+              </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-3">
+              <div class="link-image-wrap">
+                <a class="link-image" href="#"><img src="" alt="" width="138" height="55"/></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section class="section section-40 section-md-top-75 section-md-bottom-60 bg-cod-gray novi-background">
+        <div class="container text-center text-md-start">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 d-flex justify-content-between align-items-center">
+                    <div class="logo-wrapper text-center">
+                        <a class="brand" href="{{ url_for('index') }}">
+                            <img src="{{ url_for('static', filename='images/Vexra-black-bg.jpg') }}" alt="" width="139" height="22"/>
+                        </a>
+                    </div>
+                    <div class="address-wrapper text-center">
+                        <address class="contact-info text-center">
+                            <div class="unit unit-horizontal unit-spacing-xs align-items-center justify-content-center">
+                                <div class="unit-left">
+                                    <span class="novi-icon icon icon-md-custom icon-gunsmoke material-icons-place"></span>
+                                </div>
+                                <div class="unit-body fw-light">
+                                    <a class="link-light-03 d-inline" href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x48670eeb616bd095:0x721b814f1f23064f?sa=X&ved=1t:8290&ictx=111" target="_blank">
+                                        Dogpatch Labs, CHQ<br>Dublin North
+                                    </a>
+                                </div>
+                            </div>
+                        </address>
+                    </div>
+                    <div class="contact-wrapper text-center">
+                        <address class="contact-info text-center">
+                            <div class="unit unit-horizontal unit-spacing-xs align-items-center justify-content-center">
+                                <div class="unit-left">
+                                    <span class="novi-icon icon icon-md-custom icon-gunsmoke material-icons-email"></span>
+                                </div>
+                                <div class="unit-body fw-light">
+                                    <div class="link-wrap">
+                                        <a class="link-light-03" href="mailto:info.vexra@gmail.com">info.vexra@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+      <footer class="page-foot page-foot-default section-35 bg-black novi-background text-center">
+        <div class="container">
+          <p class="rights small">
+            <span>Vexra</span>
+            <span>&nbsp;&#169;&nbsp;</span>
+            <span class="copyright-year"></span>
+            <span>All Rights Reserved.</span>
+            <br class="d-md-none">
+            <span>Front-end designed by <a class="link-primary" href="https://www.michaeljscahill.com">Michael.</a></span>
+          </p>
+        </div>
+      </footer>
+
+      <div class="snackbars" id="form-output-global"></div>
+      <script src="{{ url_for('static', filename='js/core.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </div>
+  </body>
+</html>

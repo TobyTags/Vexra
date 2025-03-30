@@ -1,0 +1,1730 @@
+<!-- # calculated_data = {
+            'name': name,
+            'currency': currency,
+            'Confidence': Confidence,
+            'Impulsivity': Impulsivity,
+            'Familiarity_preferences': Familiarity_preferences,
+            'Risk_tolerance': Risk_tolerance,
+            'Composure': Composure,
+            'Overall_Wealth': Overall_Wealth,
+            'Risk_capacity': Risk_capacity,
+            'Suitability_rating': Suitability_rating,
+            'Objective_experience': Objective_experience,
+            'Investment_history': Investment_history,
+            'Objective_knowledge': Objective_knowledge,
+            'self_Identification_of_knowledge': self_Identification_of_knowledge,
+            'Impact_desire': Impact_desire,
+            'Impact_apprehension': Impact_apprehension,
+            'Impact_tradeoff': Impact_tradeoff,
+            'need_for_evidence': need_for_evidence,
+            'Level_of_sustainable_assets': Level_of_sustainable_assets,
+            'A2': A2,
+            'A3': A3,
+            'A4': A4,
+            'A5': A5,
+            'A6': A6,
+            'A7': A7,
+            'A8': A8,
+            'A9': A9,
+            'A10': A10,
+            'A11': A11,
+            'A12': A12,
+            'A13': A13,
+            'Liquidity_and_money_market_products': Liquidity_and_money_market_products,
+            'Bonds': Bonds,
+            'Equity': Equity,
+            'Multi_asset_class_funds': Multi_asset_class_funds,
+            'Precious_metals_and_commodities': Precious_metals_and_commodities,
+            'Hedge_funds': Hedge_funds,
+            'Private_markets': Private_markets,
+            'Real_estate': Real_estate,
+            'Structured_products': Structured_products,
+            'Other_derivatives': Other_derivatives,
+            'Course_or_Degree': Course_or_Degree,
+            'Professional_Experience': Professional_Experience,
+            'Personal_Investing': Personal_Investing,
+            'Reading_books_websites_articles': Reading_books_websites_articles
+            'knowledge_count': knowledge_count-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Management Data Report</title>
+    <style>
+        @font-face {
+            font-family: 'Hoefler Text';
+            src: url('Website-P24/static/fonts/FontPackages/hoefler-text.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Hoefler Text Italic';
+            src: url('Website-P24/static/fonts/FontPackages/hoefler-text-italic.ttf') format('truetype');
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        @font-face {
+            font-family: 'Hoefler Text Black';
+            src: url('Website-P24/static/fonts/FontPackages/hoefler-text-black.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Hoefler Text Black Italic';
+            src: url('Website-P24/static/fonts/FontPackages/hoefler-text-black-italic.ttf') format('truetype');
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hoefler Text', serif;
+            background:  #e6e7e9;
+            color: #333;
+        }
+
+        header {
+            background-color: transparent;
+            color: #0e1c32;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        header img {
+            max-height: 60px;
+            height: auto;
+            width: auto;
+        }
+
+        .container {
+            margin-top: 100px; /* Adjust based on header height */
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Center the content */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+
+        .data-item {
+    font-family: 'Hoefler Text Black Italic', serif;
+    font-weight: bold; /* Ensure the text is thicker */
+    text-align: center;
+    font-size: 1.65em;
+    color: #172039;
+    margin-top: 85px;
+    margin-bottom: 15px; /* Adjust margin to bring it closer to the h5 element */
+}
+.data-item1 {
+    font-family: 'Hoefler Text Black Italic', serif;
+    font-weight: bold; /* Ensure the text is thicker */
+    text-align: center;
+    font-size: 1.65em;
+    color: #172039;
+    margin-bottom: 15px; /* Adjust margin to bring it closer to the h5 element */
+}
+
+
+h5 {
+    font-family: 'Hoefler Text', serif;
+    font-weight: normal; /* Make the text skinnier */
+    text-align: center;
+    font-size: 1.1em;
+    color: #56819c;
+    margin-top: 0; /* Remove top margin to bring it closer to the .data-item */
+    margin-bottom: 15px; /* Adjust bottom margin to bring it closer to the slider */
+}
+h4{
+    font-family: 'Hoefler Text', serif;
+    font-weight: bold; /* Make the text skinnier */
+    text-align: center;
+    font-size: 1.25em;
+    color: #151b2d;
+    margin-top: 30; /* Remove top margin to bring it closer to the .data-item */
+    margin-bottom: 5px; /* Adjust bottom margin to bring it closer to the slider */
+}
+
+p {
+    font-family: 'Hoefler Text', serif;
+    font-weight: normal; /* Make the text skinnier */
+    text-align: center;
+    font-size: 1.15em;
+    color: #56819c;
+    margin-top: 0; /* Remove top margin to bring it closer to the .data-item */
+    margin-bottom: 15px; /* Adjust bottom margin to bring it closer to the slider */
+}
+
+
+        .name {
+            text-align: center;
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+            padding: 20px;
+        }
+
+        header {
+    background-color: white;
+    color: #0e1c32;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: top 0.3s; /* Add this line for smooth transition */
+}
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .header-content h1 {
+            margin: 0;
+            font-size: 1.5em;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        /* Slider CSS */
+        .slider-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 15px;
+            background: linear-gradient(to Center, #000000, #151b2d, #185378,#151b2d, #6074ba);
+            outline: none;
+            transition: 50s;
+            border-radius: 5px;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-family: 'Hoefler Text Black Italic', serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.25em;
+            color: #000000;
+        }
+
+        .sidebar {
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0; /* Change this to 0 to extend to the top */
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 100px; /* Adjust this to create space for the header */
+}
+
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            display: block;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover,
+        .sidebar ul li a.active {
+            background-color: #f0f0f0;
+        }
+
+        .flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+.flex-container .data-item1 {
+    flex: 1;
+    text-align: left; /* Align text to the left for Overall Wealth */
+}
+
+.flex-container .data-item1 + .data-item1 {
+    text-align: right; /* Align text to the right for Currency */
+}
+
+
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.more-info {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Risk Tolerance" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.more-info:hover {
+    color: #185378;
+}
+
+
+#usageToggle {
+    font-size: 1.25em;
+    color: #56819c;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+#usageToggle:hover {
+    color: #185378;
+}
+
+
+
+#confidenceMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Confidence Level" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#confidenceMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#impulsivityMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Impulsivity Level" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#impulsivityMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+        #welcome-message {
+            font-size: xx-large;
+        }
+
+
+
+        #familiarityMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Familiarity Preferences" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#familiarityMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+
+#composureMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Composure" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#composureMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+
+#riskCapacityMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Risk Capacity" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#riskCapacityMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+
+
+#suitabilityMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Suitability Rating" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#suitabilityMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+#objectiveExperienceMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Objective Experience" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#objectiveExperienceMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+
+#investmentHistoryMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Investment History" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#investmentHistoryMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#objectiveKnowledgeMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Objective Knowledge" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#objectiveKnowledgeMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+#impactDesireMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Impact Desire" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#impactDesireMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+#impactApprehensionMoreInfo {
+    font-size: 0.4em; /* Small font size */
+    color: #56819c;
+    text-decoration: underline; /* Underline the text */
+    margin-left: 10px; /* Adjust the spacing from the "Impact Apprehension" */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#impactApprehensionMoreInfo:hover {
+    color: #185378;
+}
+
+.hidden-content {
+    display: none;
+    transition: all 0.3s ease;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    {% set first_row = newdf[0] %}
+    <header>
+        <a href="{{ url_for('LogedIn') }}">
+            <img src="{{ url_for('static', filename='images/Vexra-transformed.png') }}" alt="Vexra Logo" />
+        </a>
+        <div class="header-content">
+            <h1 id="welcome-message">Wealth Management Data Report</h1>
+            <div class="name">{{ first_row['name'] }}</div>
+        </div>
+    </header>
+
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#" class="active">Financial Personality</a></li>
+            <li><a href="#">Knowledge & Experience</a></li>
+            <li><a href="#">Risk Capacity</a></li>
+            <li><a href="#">Suitable Risk</a></li>
+            <li><a href="#">Sustainable Investing</a></li>
+            <li><a href="#">Recommendations</a></li>
+            <li><a href="#">Portfolio Risk</a></li>
+            <li><a href="#">Calculator</a></li>
+            <li><a href="#">Comments</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="flex-container">
+            <div class="data-item1">Overall Wealth: {{ first_row['Overall_Wealth'] }}</div>
+            <div class="data-item1">Currency: {{ first_row['currency'] }}</div>
+        </div>
+        <div class="data-item1" style="display: flex; justify-content: center; align-items: baseline;">
+            Risk Tolerance: {{ "{:.2f}".format(first_row['Risk_tolerance']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="riskToleranceMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="riskToleranceContent" class="hidden-content">
+            <h5>Risk tolerance evaluates an investor’s willingness to accept the risk of financial loss in pursuit of potential returns, helping to tailor investment strategies that align with their risk appetite.​</h5>
+        </div>
+        
+        <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Risk_tolerance'] }}" step="0.01" class="slider" id="riskToleranceSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+    
+        <div id="riskToleranceDescription" class="risk-tolerance-description"></div>
+
+        <div class="usage-container" style="text-align: center;">
+            <span id="usageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="usageContent" class="hidden-content">
+                <p id="usageDescription"></p>
+            </div>
+        </div>
+                
+
+
+
+
+      <div class="data-item">Confidence Level: {{ "{:.2f}".format(first_row['Confidence']).rstrip('0').rstrip('.') }}
+    <span class="more-info" id="confidenceMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+</div>
+<div id="confidenceContent" class="hidden-content">
+    <h5>Confidence levels measure how capable and comfortable investors feel about their ability to make good financial decisions, indicating their potential need for guidance and support.</h5>
+</div>
+ <!-- Slider Container -->
+        <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Confidence'] }}" step="0.01" class="slider" id="confidenceSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+
+        <div id="confidenceDescription" class="confidence-description"></div>
+
+        <div class="usage-container" style="text-align: center;">
+            <span id="confidenceUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="confidenceUsageContent" class="hidden-content">
+                <p id="confidenceUsageDescription"></p>
+            </div>
+        </div>
+
+        
+
+
+
+
+        <div class="data-item">Impulsivity Level: {{ "{:.2f}".format(first_row['Impulsivity']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="impulsivityMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="impulsivityContent" class="hidden-content">
+            <h5>Impulsivity levels assess the tendency of investors to make financial decisions emotionally and on the spur of the moment, impacting their overall investment strategy and stability.</h5>
+        </div>
+        <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Impulsivity'] }}" step="0.01" class="slider" id="impulsivitySlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="impulsivityDescription" class="impulsivity-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="impulsivityUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="impulsivityUsageContent" class="hidden-content">
+                <p id="impulsivityUsageDescription"></p>
+            </div>
+        </div>
+        
+
+        <div class="data-item">Familiarity Preferences: {{ "{:.2f}".format(first_row['Familiarity_preferences']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="familiarityMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="familiarityContent" class="hidden-content">
+            <h5>Familiarity preferences indicate an investor's preference for investment solutions that feel familiar and have a strong narrative, influencing their comfort level with different types of investments.</h5>
+        </div>
+         <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Familiarity_preferences'] }}" step="0.01" class="slider" id="familiaritySlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="familiarityDescription" class="familiarity-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="familiarityUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="familiarityUsageContent" class="hidden-content">
+                <p id="familiarityUsageDescription"></p>
+            </div>
+        </div>
+
+        
+
+
+
+
+        <div class="data-item">Composure: {{ "{:.2f}".format(first_row['Composure']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="composureMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="composureContent" class="hidden-content">
+            <h5>Composure measures how likely investors are to remain calm and focused on long-term goals despite short-term market volatility, affecting their investment behavior during market fluctuations.</h5>
+        </div>
+        <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Composure'] }}" step="0.01" class="slider" id="composureSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="composureDescription" class="composure-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="composureUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="composureUsageContent" class="hidden-content">
+                <p id="composureUsageDescription"></p>
+            </div>
+        </div>
+        
+
+
+
+
+
+        <div class="data-item">Risk Capacity: {{ "{:.2f}".format(first_row['Risk_capacity']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="riskCapacityMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="riskCapacityContent" class="hidden-content">
+            <h5>Risk capacity evaluates an investor's ability to endure financial loss without compromising their overall financial stability, based on their total net wealth relative to their investible assets.</h5>
+        </div>
+        <div id="riskCapacityDescription" class="risk-capacity-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="riskCapacityUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="riskCapacityUsageContent" class="hidden-content">
+                <p id="riskCapacityUsageDescription"></p>
+            </div>
+        </div>
+
+        
+
+
+
+        
+        <div class="data-item">Suitability Rating: {{ "{:.2f}".format(first_row['Suitability_rating']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="suitabilityMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="suitabilityContent" class="hidden-content">
+            <h5>The suitability rating assesses the appropriateness of an investment based on an investor's risk tolerance and capacity, ensuring alignment with their financial goals and risk appetite.</h5>
+        </div>
+        <div id="suitabilityDescription" class="suitability-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="suitabilityUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="suitabilityUsageContent" class="hidden-content">
+                <p id="suitabilityUsageDescription"></p>
+            </div>
+        </div>
+        
+
+        <div class="data-item">Objective Experience: {{ "{:.2f}".format(first_row['Objective_experience']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="objectiveExperienceMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="objectiveExperienceContent" class="hidden-content">
+            <h5>Objective experience assesses an investor's prior experience with investing, helping to gauge their familiarity with various investment products and strategies.</h5>
+        </div>
+        <div class="slider-container">
+    <input type="range" min="1" max="5" value="{{ first_row['Objective_experience'] }}" step="0.01" class="slider" id="objectiveExperienceSlider" disabled>
+    <div class="slider-labels">
+        <span>Low</span>
+        <span>Medium</span>
+        <span>High</span>
+    </div>
+</div>
+<div id="objectiveExperienceDescription" class="objective-experience-description"></div>
+<div class="usage-container" style="text-align: center;">
+    <span id="objectiveExperienceUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+    <div id="objectiveExperienceUsageContent" class="hidden-content">
+        <p id="objectiveExperienceUsageDescription"></p>
+    </div>
+</div>
+
+
+
+
+
+<div class="data-item">Investment History: {{ "{:.2f}".format(first_row['Investment_history']).rstrip('0').rstrip('.') }}
+    <span class="more-info" id="investmentHistoryMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+</div>
+<div id="investmentHistoryContent" class="hidden-content">
+    <h5>Investment history assesses an investor's prior experience with various financial products and strategies, providing insights into their familiarity with the investment landscape.</h5>
+</div>
+<div class="slider-container">
+    <input type="range" min="1" max="5" value="{{ first_row['Investment_history'] }}" step="0.01" class="slider" id="investmentHistorySlider" disabled>
+    <div class="slider-labels">
+        <span>Low</span>
+        <span>Medium</span>
+        <span>High</span>
+    </div>
+</div>
+<div id="investmentHistoryDescription" class="investment-history-description"></div>
+<div class="usage-container" style="text-align: center;">
+    <span id="investmentHistoryUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+    <div id="investmentHistoryUsageContent" class="hidden-content">
+        <p id="investmentHistoryUsageDescription"></p>
+    </div>
+</div>
+
+
+
+
+<div class="data-item">Objective Knowledge: {{ "{:.2f}".format(first_row['Objective_knowledge']).rstrip('0').rstrip('.') }}
+    <span class="more-info" id="objectiveKnowledgeMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+</div>
+<div id="objectiveKnowledgeContent" class="hidden-content">
+    <h5>Objective knowledge assesses an investor's actual, factual knowledge about financial products, markets, and investment strategies, providing a measure of their understanding and expertise.</h5>
+</div>
+<div class="slider-container">
+    <input type="range" min="1" max="5" value="{{ first_row['Objective_knowledge'] }}" step="0.01" class="slider" id="objectiveKnowledgeSlider" disabled>
+    <div class="slider-labels">
+        <span>Low</span>
+        <span>Medium</span>
+        <span>High</span>
+    </div>
+</div>
+<div id="objectiveKnowledgeDescription" class="objective-knowledge-description"></div>
+<div class="usage-container" style="text-align: center;">
+    <span id="objectiveKnowledgeUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+    <div id="objectiveKnowledgeUsageContent" class="hidden-content">
+        <p id="objectiveKnowledgeUsageDescription"></p>
+    </div>
+</div>
+
+
+
+
+<div class="data-item">Impact Desire: {{ "{:.2f}".format(first_row['Impact_desire']).rstrip('0').rstrip('.') }}
+    <span class="more-info" id="impactDesireMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+</div>
+<div id="impactDesireContent" class="hidden-content">
+    <h5>Impact desire assesses an investor's motivation to make a positive social or environmental impact through their investments, indicating their preference for socially responsible and impact investing.</h5>
+</div>
+<div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Impact_desire'] }}" step="0.01" class="slider" id="impactDesireSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="impactDesireDescription" class="impact-desire-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="impactDesireUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="impactDesireUsageContent" class="hidden-content">
+                <p id="impactDesireUsageDescription"></p>
+            </div>
+        </div>
+        
+
+
+
+
+        <div class="data-item">Impact Apprehension: {{ "{:.2f}".format(first_row['Impact_apprehension']).rstrip('0').rstrip('.') }}
+            <span class="more-info" id="impactApprehensionMoreInfo" style="margin-left: 10px; cursor: pointer; text-decoration: underline;">Info</span>
+        </div>
+        <div id="impactApprehensionContent" class="hidden-content">
+            <h5>Impact apprehension assesses an investor's concern or skepticism about the effectiveness and legitimacy of impact investments, indicating their level of comfort with integrating social and environmental factors into their investment decisions.</h5>
+        </div>
+        <div class="slider-container">
+            <input type="range" min="1" max="3" value="{{ first_row['Impact_apprehension'] }}" step="0.01" class="slider" id="impactApprehensionSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="impactApprehensionDescription" class="impact-apprehension-description"></div>
+        <div class="usage-container" style="text-align: center;">
+            <span id="impactApprehensionUsageToggle" style="cursor: pointer; text-decoration: underline;">Usage:</span>
+            <div id="impactApprehensionUsageContent" class="hidden-content">
+                <p id="impactApprehensionUsageDescription"></p>
+            </div>
+        </div>
+        
+
+    
+        <div class="data-item">Level of Sustainable Assets: {{ first_row['Level_of_sustainable_assets'] }}</div>
+        <h5>The level of sustainable assets indicates the proportion of investments that focus on Environmental, Social, and Governance (ESG) criteria, balancing financial performance with ethical and sustainable impact.</h5>
+        <div class="slider-container">
+            <input type="range" min="1" max="5" value="{{ first_row['Level_of_sustainable_assets'] }}" step="0.01" class="slider" id="sustainableAssetsSlider" disabled>
+            <div class="slider-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+            </div>
+        </div>
+        <div id="sustainableAssetsDescription" class="sustainable-assets-description"></div>
+        
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Confidence Level
+    var confidenceLevel = parseFloat("{{ first_row['Confidence']|tojson }}");
+    var confidenceSlider = document.getElementById('confidenceSlider');
+    confidenceSlider.value = confidenceLevel;
+    updateSliderBackground(confidenceSlider, confidenceLevel);
+    updateConfidenceDescription(confidenceLevel);
+
+    // Impulsivity Level
+    var impulsivityLevel = parseFloat("{{ first_row['Impulsivity']|tojson }}");
+    var impulsivitySlider = document.getElementById('impulsivitySlider');
+    impulsivitySlider.value = impulsivityLevel;
+    updateSliderBackground(impulsivitySlider, impulsivityLevel);
+    updateImpulsivityDescription(impulsivityLevel);
+
+    // Familiarity Preferences
+    var familiarityLevel = parseFloat("{{ first_row['Familiarity_preferences']|tojson }}");
+    var familiaritySlider = document.getElementById('familiaritySlider');
+    familiaritySlider.value = familiarityLevel;
+    updateSliderBackground(familiaritySlider, familiarityLevel);
+    updateFamiliarityDescription(familiarityLevel);
+
+    // Risk Tolerance
+    var riskToleranceLevel = parseFloat("{{ first_row['Risk_tolerance']|tojson }}");
+    var riskToleranceSlider = document.getElementById('riskToleranceSlider');
+    riskToleranceSlider.value = riskToleranceLevel;
+    updateSliderBackground(riskToleranceSlider, riskToleranceLevel);
+    updateRiskToleranceDescription(riskToleranceLevel);
+
+    // Composure
+    var composureLevel = parseFloat("{{ first_row['Composure']|tojson }}");
+    var composureSlider = document.getElementById('composureSlider');
+    composureSlider.value = composureLevel;
+    updateSliderBackground(composureSlider, composureLevel);
+    updateComposureDescription(composureLevel);
+
+    // Impact Desire
+    var impactDesireLevel = parseFloat("{{ first_row['Impact_desire']|tojson }}");
+    var impactDesireSlider = document.getElementById('impactDesireSlider');
+    impactDesireSlider.value = impactDesireLevel;
+    updateSliderBackground(impactDesireSlider, impactDesireLevel);
+    updateImpactDesireDescription(impactDesireLevel);
+    
+   // Risk Capacity
+   var riskCapacityLevel = parseFloat("{{ first_row['Risk_capacity']|tojson }}");
+    updateRiskCapacityDescription(riskCapacityLevel);
+
+
+    // Impact Apprehension
+    var impactApprehensionLevel = parseFloat("{{ first_row['Impact_apprehension']|tojson }}");
+    var impactApprehensionSlider = document.getElementById('impactApprehensionSlider');
+    impactApprehensionSlider.value = impactApprehensionLevel;
+    updateSliderBackground(impactApprehensionSlider, impactApprehensionLevel);
+    updateImpactApprehensionDescription(impactApprehensionLevel);
+
+    // Suitability Rating
+    var suitabilityRatingLevel = parseFloat("{{ first_row['Suitability_rating']|tojson }}");
+    updateSuitabilityDescription(suitabilityRatingLevel);
+
+        // Objective Knowledge
+        var objectiveKnowledgeLevel = parseFloat("{{ first_row['Objective_knowledge']|tojson }}");
+    var objectiveKnowledgeSlider = document.getElementById('objectiveKnowledgeSlider');
+    objectiveKnowledgeSlider.value = objectiveKnowledgeLevel;
+    updateSliderBackground(objectiveKnowledgeSlider, objectiveKnowledgeLevel);
+    updateObjectiveKnowledgeDescription(objectiveKnowledgeLevel);
+
+        // Level of Sustainable Assets
+        var sustainableAssetsLevel = parseFloat("{{ first_row['Level_of_sustainable_assets']|tojson }}");
+    var sustainableAssetsSlider = document.getElementById('sustainableAssetsSlider');
+    sustainableAssetsSlider.value = sustainableAssetsLevel;
+    updateSliderBackground(sustainableAssetsSlider, sustainableAssetsLevel);
+    updateSustainableAssetsDescription(sustainableAssetsLevel);
+
+     // Objective Experience
+     var objectiveExperienceLevel = parseFloat("{{ first_row['Objective_experience']|tojson }}");
+    var objectiveExperienceSlider = document.getElementById('objectiveExperienceSlider');
+    objectiveExperienceSlider.value = objectiveExperienceLevel;
+    updateSliderBackground(objectiveExperienceSlider, objectiveExperienceLevel);
+    updateObjectiveExperienceDescription(objectiveExperienceLevel);
+
+
+        // Investment History
+        var investmentHistoryLevel = parseFloat("{{ first_row['Investment_history']|tojson }}");
+    var investmentHistorySlider = document.getElementById('investmentHistorySlider');
+    investmentHistorySlider.value = investmentHistoryLevel;
+    updateSliderBackground(investmentHistorySlider, investmentHistoryLevel);
+    updateInvestmentHistoryDescription(investmentHistoryLevel);
+});
+
+
+function updateSliderBackground(slider, level) {
+    var max = parseFloat(slider.max);
+    var min = parseFloat(slider.min);
+    var percentage = ((level - min) / (max - min)) * 100;  // Convert level to percentage
+    slider.style.background = `linear-gradient(to right, #185378 ${percentage - 10}%, #2b6b93 ${percentage - 5}%, #40a0d0 ${percentage}%, #2b6b93 ${percentage + 5}%, #185378 ${percentage + 10}%)`;
+}
+
+function updateSuitabilityDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Suitability:</h4><p>Description: Investments at this level are generally very conservative, aiming to protect capital with minimal risk, suitable for investors with low risk tolerance and low capacity for loss.</p><p>Usage: Advisors should focus on fixed-income securities, government bonds, and other low-risk assets to ensure stability and capital preservation​ )​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Suitability:</h4><p>Description: Investments are slightly more aggressive than the low suitability category, offering modest returns with limited risk, suitable for cautious investors seeking slightly better growth.</p><p>Usage: Advisors should recommend a mix of low-risk assets and some moderate-risk investments, ensuring a balanced approach with minimal exposure to significant losses​ )​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Suitability:</h4><p>Description: Investments strike a balance between risk and return, suitable for investors with a moderate risk tolerance who seek reasonable growth while maintaining some risk controls.</p><p>Usage: Advisors should provide a diversified portfolio of stocks and bonds, ensuring the investor is comfortable with moderate market fluctuations while aiming for steady growth​ )​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Suitability:</h4><p>Description: Investments are more aggressive, offering higher returns with increased risk, suitable for investors with higher risk tolerance who are willing to accept volatility for greater potential rewards.</p><p>Usage: Advisors should recommend a portfolio with a significant allocation to equities and other growth-oriented investments, balancing these with some stable assets to manage risk​ )​.</p>';
+    } else {
+        description = '<h4>High Suitability:</h4><p>Description: Investments are highly aggressive, focusing on maximizing returns with substantial risk, suitable for investors with high risk tolerance and the financial capacity to absorb potential losses.</p><p>Usage: Advisors should create a portfolio heavily weighted in equities, venture capital, and other high-risk, high-reward investments, ensuring the investor is prepared for significant market volatility​ )​.</p>';
+    }
+    document.getElementById('suitabilityDescription').innerHTML = description;
+}
+
+function updateObjectiveKnowledgeDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Objective Knowledge:</h4><p>Description: Investors have limited understanding of investment concepts and principles, often requiring basic education and detailed explanations.</p><p>Usage: Advisors should provide foundational information and simple investment options, focusing on educating the investor about fundamental financial concepts and risks​ )​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Objective Knowledge:</h4><p>Description: Investors possess some basic knowledge of investment principles but lack depth in understanding more complex financial instruments and strategies.</p><p>Usage: Advisors should offer slightly more advanced investment options and continue educational efforts, gradually introducing more complex concepts as the investor\'s understanding grows​ )​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Objective Knowledge:</h4><p>Description: Investors have a reasonable understanding of investment basics and some experience with various financial products, though not all complexities are well-grasped.</p><p>Usage: Advisors should provide a balanced mix of investment options, ensuring that explanations include both basic and intermediate concepts to strengthen the investor\'s knowledge base​ )​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Objective Knowledge:</h4><p>Description: Investors have a good grasp of investment principles and are comfortable with more complex financial instruments, though some advanced strategies may still be unfamiliar.</p><p>Usage: Advisors should recommend a more diversified and sophisticated portfolio, including detailed discussions of intermediate and advanced investment strategies to further enhance the investor\'s understanding​ )​.</p>';
+    } else {
+        description = '<h4>High Objective Knowledge:</h4><p>Description: Investors have a comprehensive understanding of investment concepts, principles, and strategies, and are comfortable with complex and advanced financial instruments.</p><p>Usage: Advisors can focus on high-level strategies, complex investments, and sophisticated financial products, ensuring that discussions are detailed and technical to match the investor\'s advanced knowledge​ )​.</p>';
+    }
+    document.getElementById('objectiveKnowledgeDescription').innerHTML = description;
+}
+
+function updateRiskCapacityDescription(level) {
+    var description = '';
+    if (level < 0.85) {
+        description = '<h4>Low Risk Capacity:</h4><p>Description: Investors with low risk capacity have total net wealth smaller than their investible assets, necessitating a conservative approach to protect their wealth by taking lower risk with their investments.</p><p>Usage: Advisors should recommend lower-risk investment strategies, focusing on stability and capital preservation, as these investors cannot afford significant financial loss due to their lower overall wealth​ )​.</p>';
+    } else if (level < 1.15) {
+        description = '<h4>Medium Risk Capacity:</h4><p>Description: Medium risk capacity indicates that an investor\'s total net wealth is approximately equal to their investible assets, suggesting they should invest at the risk level aligned with their risk tolerance.</p><p>Usage: Advisors should tailor investment portfolios to match the investor’s risk tolerance, balancing risk and return without the need for significant adjustments based on wealth disparity​ )​.</p>';
+    } else {
+        description = '<h4>High Risk Capacity:</h4><p>Description: High risk capacity investors have total net wealth larger than their investible assets, allowing them to take on higher levels of risk with their investments due to a substantial financial buffer.</p><p>Usage: Advisors should recommend more aggressive investment strategies, leveraging the investor’s higher wealth to pursue higher returns, while ensuring the investments align with their overall financial goals​ )​.</p>';
+    }
+    document.getElementById('riskCapacityDescription').innerHTML = description;
+}
+function updateConfidenceDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Confidence:</h4><p>Description: Individuals with low confidence may have limited experience with investing, are less aware of current market conditions, and might require additional guidance or background information when making financial decisions.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Confidence:</h4><p>Description: These investors have slightly more confidence than low-confidence individuals but still feel somewhat unsure about their financial decision-making abilities.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Confidence:</h4><p>Description: Medium confidence investors are reasonably sure of their ability to make good financial choices but may occasionally feel uncertain about the best course of action.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Confidence:</h4><p>Description: Investors at this level are quite confident in their decision-making abilities and generally comfortable with handling complex information and making informed choices.</p>';
+    } else {
+        description = '<h4>High Confidence:</h4><p>Description: High confidence investors are very comfortable making complex choices, considering a wide range of information, and weighing various options.</p>';
+    }
+    document.getElementById('confidenceDescription').innerHTML = description;
+}
+
+function updateInvestmentHistoryDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Investment History:</h4><p>Description: Investors with low investment history have little to no prior experience with investing. They might not have engaged in significant financial activities beyond basic savings accounts.</p><p>Usage: Advisors should focus on foundational education, starting with basic investment concepts and gradually introducing simple, low-risk investment options. The goal is to build confidence and familiarity with the investment process over time​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Investment History:</h4><p>Description: These investors have some limited experience with investing, possibly having engaged in a few investment activities but lacking extensive knowledge or exposure to diverse financial instruments.</p><p>Usage: Advisors should provide a mix of basic and slightly more advanced investment options, continuing educational efforts to help these investors understand more complex concepts. Offering a balanced portfolio with low to moderate-risk investments can help build their confidence​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Investment History:</h4><p>Description: Investors with medium investment history have a reasonable amount of experience, having dealt with various financial products and understanding basic investment principles, though they may not be familiar with all types of investments.</p><p>Usage: Advisors should offer a diversified portfolio that includes a variety of investment options. Regular updates and explanations about market conditions and strategies can help these investors make more informed decisions and expand their investment knowledge​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Investment History:</h4><p>Description: These investors possess considerable experience with investing and have dealt with a range of financial products. They understand more complex investment strategies and are comfortable with moderate risk.</p><p>Usage: Advisors should recommend a more sophisticated portfolio, including higher-risk investments if appropriate. Detailed discussions on advanced investment strategies and regular performance reviews will keep these investors engaged and informed​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else {
+        description = '<h4>High Investment History:</h4><p>Description: High investment history investors have extensive experience with a wide range of investment types and strategies. They are well-versed in financial markets and comfortable with complex, high-risk investments.</p><p>Usage: Advisors can focus on advanced and high-risk investment strategies. These investors should be involved in detailed strategic discussions and provided with comprehensive market analyses to leverage their extensive knowledge and experience​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    }
+    document.getElementById('investmentHistoryDescription').innerHTML = description;
+}
+
+function updateObjectiveExperienceDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Objective Experience:</h4><p>Description: Investors with low objective experience have limited or no prior experience with investing, which can impact their ability to understand and navigate various investment products and strategies.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Objective Experience:</h4><p>Description: These investors have some basic experience with investing but lack extensive knowledge of more complex financial instruments and strategies.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Objective Experience:</h4><p>Description: Investors with medium objective experience have a reasonable understanding of basic investment principles and some practical experience, though they may not be familiar with all investment types.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Objective Experience:</h4><p>Description: These investors possess a good understanding of investment principles and have considerable experience with various financial products, though they may still lack experience with very advanced strategies.</p>';
+    } else {
+        description = '<h4>High Objective Experience:</h4><p>Description: High objective experience investors have extensive knowledge and experience with a wide range of investment types and strategies, making them comfortable with complex financial instruments.</p>';
+    }
+    document.getElementById('objectiveExperienceDescription').innerHTML = description;
+}
+
+function updateImpulsivityDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Impulsivity:</h4><p>Description: Individuals with low impulsivity tend to be measured and methodical when approaching financial decisions, deliberating over possible outcomes before proceeding.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Impulsivity:</h4><p>Description: These investors are generally deliberate but can occasionally make impulsive decisions, especially under stress or excitement.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Impulsivity:</h4><p>Description: Investors with medium impulsivity usually deliberate over financial decisions but can sometimes act on impulse, particularly in high-pressure situations.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Impulsivity:</h4><p>Description: These investors often trust their gut feelings and first impressions, making spontaneous decisions more frequently than their more deliberative counterparts.</p>';
+    } else {
+        description = '<h4>High Impulsivity:</h4><p>Description: High impulsivity investors tend to make decisions quickly, often based on emotions or gut feelings, without much consideration for future consequences.</p>';
+    }
+    document.getElementById('impulsivityDescription').innerHTML = description;
+}
+
+function updateFamiliarityDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Familiarity Preference:</h4><p>Description: Individuals with low familiarity preference are comfortable with unusual or novel investments and do not need a strong narrative to be comfortable with an investment.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Familiarity Preference:</h4><p>Description: These investors have a slight preference for familiar investments but are open to considering unfamiliar options if the benefits are clearly presented.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Familiarity Preference:</h4><p>Description: Investors with medium familiarity preference tend to gravitate towards familiar investments but will invest in unfamiliar ones if the benefits are made clear.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Familiarity Preference:</h4><p>Description: These investors prefer investments that are familiar and may need strong narratives to feel comfortable with unfamiliar investments.</p>';
+    } else {
+        description = '<h4>High Familiarity Preference:</h4><p>Description: High familiarity preference investors are uncomfortable with unusual or novel investments and typically need a strong narrative to be comfortable with any unfamiliar investment.</p>';
+    }
+    document.getElementById('familiarityDescription').innerHTML = description;
+}
+
+function updateRiskToleranceDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Risk Tolerance:</h4><p>Description: Individuals with low risk tolerance are typically very cautious and prefer to avoid significant losses, even if it means potentially lower returns. They are uncomfortable with market volatility and are likely to prefer investments that offer more stable returns.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Risk Tolerance:</h4><p>Description: These investors are somewhat cautious but can tolerate a small amount of risk. They seek a balance between risk and return, preferring investments that offer moderate growth with limited exposure to significant losses.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Risk Tolerance:</h4><p>Description: Medium risk tolerance investors are comfortable with a moderate level of risk and understand that market fluctuations are part of the investment process. They aim for a balanced approach that offers growth potential without excessive risk.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Risk Tolerance:</h4><p>Description: These investors are more comfortable with higher levels of risk and are willing to accept greater volatility for the potential of higher returns. They understand and are prepared for the ups and downs of the market.</p>';
+    } else {
+        description = '<h4>High Risk Tolerance:</h4><p>Description: High risk tolerance investors are very comfortable with significant market volatility and the possibility of substantial losses in pursuit of high returns. They are typically long-term investors who can withstand the cyclical nature of the market.</p>';
+    }
+    document.getElementById('riskToleranceDescription').innerHTML = description;
+}
+
+function updateComposureDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Composure:</h4><p>Description: Individuals with low composure are likely to be anxious and jittery about the market\'s ups and downs. They may be prone to frequent trading, often buying high and selling low, which can hurt long-term investment performance.</p><p>Usage: Advisors should recommend lower-risk investments that align closely with the investor\'s risk tolerance. Frequent reassurance and education about market fluctuations are essential to help these investors stay invested. Visual aids explaining market trends and the importance of long-term investment can be particularly useful​​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Composure:</h4><p>Description: These investors occasionally worry about market volatility but can handle it in most situations. They might become anxious during particularly stressed market conditions.</p><p>Usage: Advisors should offer a balanced portfolio with moderate-risk investments and provide regular updates to maintain confidence. Periodic check-ins during volatile periods can help reassure these investors and prevent rash decisions​​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Composure:</h4><p>Description: Medium composure investors are generally stable but can experience occasional concerns about market fluctuations, especially during significant downturns.</p><p>Usage: Advisors should continue to provide a diversified portfolio that matches the investor\'s risk tolerance, with a mix of low and moderate-risk assets. Regular communication about market conditions and the long-term benefits of staying invested is important to keep these investors on track​​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Composure:</h4><p>Description: These investors are relatively unaffected by short-term market volatility and maintain a focus on long-term investment goals. They may occasionally need reassurance during extreme market conditions.</p><p>Usage: Advisors should provide a growth-oriented portfolio that includes higher-risk investments. These investors can handle more market volatility, but advisors should still provide periodic updates and maintain open communication to ensure they remain confident in their investment strategy​​.</p>';
+    } else {
+        description = '<h4>High Composure:</h4><p>Description: High composure investors remain calm during market fluctuations and stay focused on long-term goals. They are less likely to panic during market downturns and may even see them as buying opportunities.</p><p>Usage: Advisors should recommend a high-risk, high-reward investment strategy that aligns with the investor\'s long-term goals. These investors require less frequent reassurance but should still be kept informed about market conditions and potential opportunities for strategic investments​​.</p>';
+    }
+    document.getElementById('composureDescription').innerHTML = description;
+}
+
+
+function updateSustainableAssetsDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Level of Sustainable Assets:</h4><p>Description: Portfolios with a low level of sustainable assets contain minimal investments in ESG (Environmental, Social, and Governance) focused instruments, primarily emphasizing traditional financial performance.</p><p>Usage: Advisors should focus on educating investors about the benefits of incorporating ESG factors and gradually introduce a few sustainable investment options to gauge interest and comfort level​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Level of Sustainable Assets:</h4><p>Description: These portfolios have a moderate but still limited inclusion of sustainable assets, balancing traditional investments with some ESG-focused instruments.</p><p>Usage: Advisors should increase the proportion of sustainable investments, highlighting their potential for long-term growth and stability, while still maintaining a significant allocation to conventional assets​ (Oxford Risk)​​ (Oxford Properties Group)​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Level of Sustainable Assets:</h4><p>Description: Portfolios at this level integrate a balanced mix of sustainable and traditional investments, aiming to achieve both financial returns and positive social or environmental impact.</p><p>Usage: Advisors should continue to educate investors on the performance of sustainable assets, showing how they can complement traditional investments to enhance overall portfolio resilience and ethical impact​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Level of Sustainable Assets:</h4><p>Description: These portfolios have a significant portion of investments in sustainable assets, reflecting a strong commitment to ESG principles while still including some traditional investments.</p><p>Usage: Advisors should focus on aligning investment strategies with the investor’s values, providing detailed reports on the impact and performance of sustainable assets to maintain engagement and confidence​ (Oxford Risk)​​ (Oxford Properties Group)​.</p>';
+    } else {
+        description = '<h4>High Level of Sustainable Assets:</h4><p>Description: Portfolios with a high level of sustainable assets are heavily weighted towards ESG-focused investments, often prioritizing social and environmental impact over maximum financial returns.</p><p>Usage: Advisors should provide comprehensive information on the social and environmental impact of investments, ensuring these portfolios align closely with the investor’s ethical values and long-term sustainability goals​ (Oxford Risk)​​ (Oxford Risk)​.</p>';
+    }
+    document.getElementById('sustainableAssetsDescription').innerHTML = description;
+}
+
+
+function updateImpactDesireDescription(level) {
+    var description = '';
+    if (level <= 1.8) {
+        description = '<h4>Low Impact Desire:</h4><p>Description: Individuals with low impact desire are generally less concerned with the social or environmental impact of their investments. Their primary focus is on financial returns rather than the ethical or social implications of their investment choices.</p><p>Usage: Advisors should focus on traditional investment strategies that prioritize financial performance. These investors are typically more interested in return on investment (ROI) and less interested in ESG (Environmental, Social, and Governance) criteria​​.</p>';
+    } else if (level <= 2.6) {
+        description = '<h4>Medium-Low Impact Desire:</h4><p>Description: These investors have a slight interest in the social or environmental impact of their investments but still prioritize financial returns. They might appreciate ESG considerations but are not driven by them.</p><p>Usage: Advisors should offer a mix of traditional investments with some ESG options, providing information on how these investments can still meet financial goals while offering additional social or environmental benefits. It\'s important to highlight that these investments do not significantly compromise returns​​.</p>';
+    } else if (level <= 3.4) {
+        description = '<h4>Medium Impact Desire:</h4><p>Description: Investors with medium impact desire have a balanced approach, valuing both financial returns and the social or environmental impact of their investments. They seek a blend of both aspects in their portfolio.</p><p>Usage: Advisors should recommend a diversified portfolio that includes both traditional and ESG investments. Providing detailed information on the performance and impact of ESG investments can help these investors understand how their financial goals align with their ethical values​​.</p>';
+    } else if (level <= 4.2) {
+        description = '<h4>Medium-High Impact Desire:</h4><p>Description: These investors prioritize the social or environmental impact of their investments more strongly, though financial returns are still important. They are more inclined to invest in companies or funds that align with their ethical beliefs.</p><p>Usage: Advisors should focus on identifying high-performing ESG investments that meet both financial and impact criteria. Regular reports on the social and environmental impact of these investments can help maintain the investor’s interest and satisfaction with their portfolio​​.</p>';
+    } else {
+        description = '<h4>High Impact Desire:</h4><p>Description: High impact desire investors are deeply committed to the social or environmental impact of their investments, often prioritizing these factors over financial returns. They seek to use their investments to drive positive change.</p><p>Usage: Advisors should construct portfolios that heavily emphasize ESG criteria, even if it means potentially lower financial returns. Providing extensive research and impact assessments on these investments is crucial to keep these investors engaged and satisfied with their investment choices​​.</p>';
+    }
+    document.getElementById('impactDesireDescription').innerHTML = description;
+}
+
+function updateImpactApprehensionDescription(level) {
+    var description = '';
+    if (level <= 1.3) {
+        description = '<h4>Low Impact Apprehension:</h4><p>Description: Individuals with low impact apprehension are generally unconcerned about the potential negative consequences of their investments\' social or environmental impact. They are primarily focused on financial returns and are not worried about the ethical implications of their investment choices.</p><p>Usage: Advisors should recommend a variety of high-return investment opportunities without significant focus on ESG factors. These investors might not require detailed information about the social or environmental impact of their investments, as their primary concern is maximizing financial performance​​.</p>';
+    } else if (level <= 2.3) {
+        description = '<h4>Medium Impact Apprehension:</h4><p>Description: Investors with medium impact apprehension have a balanced view, acknowledging the potential negative consequences of their investments but not letting it dominate their decision-making process. They are concerned with both financial returns and the broader impact of their investments.</p><p>Usage: Advisors should offer a portfolio that includes both traditional investments and ESG-focused options. These investors will appreciate information on how their investments perform both financially and in terms of social and environmental impact. Highlighting investments that achieve a good balance between returns and positive impact can be particularly appealing to them​​.</p>';
+    } else {
+        description = '<h4>High Impact Apprehension:</h4><p>Description: High impact apprehension investors are highly concerned about the negative social or environmental consequences of their investments. They prioritize ethical considerations and often avoid investments that could have harmful impacts, even if these are financially lucrative.</p><p>Usage: Advisors should focus on identifying and recommending investments that meet strict ESG criteria. Providing detailed assessments of the social and environmental impact of these investments is crucial. These investors are likely to prefer portfolios that consist mainly of sustainable and socially responsible investments, even if it means accepting lower financial returns​​.</p>';
+    }
+    document.getElementById('impactApprehensionDescription').innerHTML = description;
+}
+
+
+//Header scroll
+var lastScrollTop = 0;
+    var header = document.querySelector('header');
+
+    window.addEventListener('scroll', function() {
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // Scroll down
+            header.style.top = '-80px'; // Adjust based on header height
+        } else {
+            // Scroll up
+            header.style.top = '0';
+        }
+
+        lastScrollTop = scrollTop;
+    });
+
+
+
+    //More Info
+    document.addEventListener('DOMContentLoaded', function() {
+    var moreInfo = document.getElementById('riskToleranceMoreInfo');
+    var content = document.getElementById('riskToleranceContent');
+
+    moreInfo.addEventListener('click', function() {
+        content.style.display = (content.style.display === 'none' || content.style.display === '') ? 'block' : 'none';
+        moreInfo.textContent = (content.style.display === 'block') ? 'Less' : 'Info';
+    });
+});
+
+    // New "Usage:" functionality
+    var usageToggle = document.getElementById('usageToggle');
+    var usageContent = document.getElementById('usageContent');
+    var riskToleranceValue = parseFloat("{{ first_row['Risk_tolerance'] }}");
+    var usageDescription = document.getElementById('usageDescription');
+
+    function updateUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should recommend conservative investment strategies, focusing on fixed-income securities, government bonds, and other low-risk options. It’s crucial to provide these investors with reassurance and clear explanations about the safety and predictability of their investments.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should suggest a balanced portfolio that includes both low-risk and moderate-risk investments. Diversification is key, with a mix of bonds, blue-chip stocks, and perhaps some exposure to real estate or dividend-paying stocks.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should create a diversified portfolio that includes a mix of stocks and bonds, potentially incorporating index funds, mutual funds, and other moderate-risk investment vehicles.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should consider a growth-oriented portfolio with a significant allocation to equities, including international stocks and small-cap funds.';
+        } else {
+            description = 'Usage: Advisors should recommend aggressive investment strategies that include a high proportion of equities, venture capital, and other high-risk assets.';
+        }
+        usageDescription.textContent = description;
+    }
+
+    usageToggle.addEventListener('click', function() {
+        usageContent.style.display = (usageContent.style.display === 'none' || usageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the usage description
+    updateUsageDescription(riskToleranceValue);
+
+
+    // Confidence Level More Info
+    var confidenceMoreInfo = document.getElementById('confidenceMoreInfo');
+    var confidenceContent = document.getElementById('confidenceContent');
+
+    confidenceMoreInfo.addEventListener('click', function() {
+        confidenceContent.style.display = (confidenceContent.style.display === 'none' || confidenceContent.style.display === '') ? 'block' : 'none';
+        confidenceMoreInfo.textContent = (confidenceContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+
+    // Confidence Level Usage
+    var confidenceUsageToggle = document.getElementById('confidenceUsageToggle');
+    var confidenceUsageContent = document.getElementById('confidenceUsageContent');
+    var confidenceLevel = parseFloat("{{ first_row['Confidence'] }}");
+    var confidenceUsageDescription = document.getElementById('confidenceUsageDescription');
+
+    function updateConfidenceUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should provide these investors with more support, simplify investment choices, and focus on long-term goals rather than short-term market movements to avoid overwhelming them.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should offer a balance of support and autonomy, ensuring that these investors have enough information to make informed decisions while still guiding them through more complex or unfamiliar investment options.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors can provide a moderate level of guidance and background information. These investors can handle some complexity but may need reassurance during volatile market periods.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors can involve these investors more in the decision-making process, offering detailed insights and analyses to satisfy their need for thorough information.';
+        } else {
+            description = 'Usage: These investors often want to be involved in the decision-making process and are interested in the technical details and performance of their investments.';
+        }
+        confidenceUsageDescription.textContent = description;
+    }
+
+    confidenceUsageToggle.addEventListener('click', function() {
+        confidenceUsageContent.style.display = (confidenceUsageContent.style.display === 'none' || confidenceUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the confidence usage description
+    updateConfidenceUsageDescription(confidenceLevel);
+
+
+
+    // Impulsivity Level More Info
+    var impulsivityMoreInfo = document.getElementById('impulsivityMoreInfo');
+    var impulsivityContent = document.getElementById('impulsivityContent');
+
+    impulsivityMoreInfo.addEventListener('click', function() {
+        impulsivityContent.style.display = (impulsivityContent.style.display === 'none' || impulsivityContent.style.display === '') ? 'block' : 'none';
+        impulsivityMoreInfo.textContent = (impulsivityContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+ 
+    
+    // Impulsivity Level Usage
+    var impulsivityUsageToggle = document.getElementById('impulsivityUsageToggle');
+    var impulsivityUsageContent = document.getElementById('impulsivityUsageContent');
+    var impulsivityLevel = parseFloat("{{ first_row['Impulsivity'] }}");
+    var impulsivityUsageDescription = document.getElementById('impulsivityUsageDescription');
+
+    function updateImpulsivityUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should provide detailed information and encourage a thorough analysis of investment options. These investors benefit from structured decision-making processes and might appreciate tools and resources that aid in careful consideration.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should offer a mix of detailed analysis and quick decision-making frameworks to help these investors stay balanced. They might need occasional reminders to step back and evaluate their choices carefully during volatile periods.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should provide a balanced approach, combining comprehensive information with stress management techniques. It\'s useful to discuss potential emotional triggers and establish pre-planned strategies for decision-making under pressure.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should help these investors by setting clear guidelines and boundaries for decision-making. Encouraging the use of cooling-off periods before finalizing decisions can help manage impulsive tendencies.';
+        } else {
+            description = 'Usage: Advisors should implement strict decision-making frameworks and regular oversight to mitigate the risks associated with impulsive behavior. Providing educational resources on the long-term impact of impulsive decisions and fostering a disciplined investment approach are crucial.';
+        }
+        impulsivityUsageDescription.textContent = description;
+    }
+
+    impulsivityUsageToggle.addEventListener('click', function() {
+        impulsivityUsageContent.style.display = (impulsivityUsageContent.style.display === 'none' || impulsivityUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the impulsivity usage description
+    updateImpulsivityUsageDescription(impulsivityLevel);
+
+ 
+
+    // Familiarity Preferences More Info
+    var familiarityMoreInfo = document.getElementById('familiarityMoreInfo');
+    var familiarityContent = document.getElementById('familiarityContent');
+
+    familiarityMoreInfo.addEventListener('click', function() {
+        familiarityContent.style.display = (familiarityContent.style.display === 'none' || familiarityContent.style.display === '') ? 'block' : 'none';
+        familiarityMoreInfo.textContent = (familiarityContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    // Familiarity Preferences Usage
+    var familiarityUsageToggle = document.getElementById('familiarityUsageToggle');
+    var familiarityUsageContent = document.getElementById('familiarityUsageContent');
+    var familiarityLevel = parseFloat("{{ first_row['Familiarity_preferences'] }}");
+    var familiarityUsageDescription = document.getElementById('familiarityUsageDescription');
+
+    function updateFamiliarityUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors can introduce these investors to a broad range of investment opportunities, including innovative and unconventional options. These investors are likely to be open to exploring new markets and asset classes without needing extensive background stories.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should provide a mix of familiar and novel investment options, ensuring that the rationale and potential benefits of less familiar choices are well-explained. Visual aids and comparative analyses can help these investors feel more comfortable stepping out of their comfort zones​​.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should balance their recommendations between familiar and new investments, providing clear and compelling narratives for the latter.  Highlighting the potential advantages and addressing any concerns about unfamiliar investments can help these investors diversify their portfolios effectively​​.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should focus on providing detailed stories and comprehensive explanations about the unfamiliar investments, including their background, performance history, and benefits.  Relating new investments to familiar concepts can also help ease these investors into diversification​​.';
+        } else {
+            description = 'Usage: Advisors should predominantly recommend familiar investment options and provide in-depth explanations and narratives when suggesting anything new. It is essential to build trust and comfort by connecting unfamiliar investments to well-understood and accepted investment principles​​.';
+        }
+        familiarityUsageDescription.textContent = description;
+    }
+
+    familiarityUsageToggle.addEventListener('click', function() {
+        familiarityUsageContent.style.display = (familiarityUsageContent.style.display === 'none' || familiarityUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the familiarity usage description
+    updateFamiliarityUsageDescription(familiarityLevel);
+});
+
+
+
+
+    // Composure More Info
+    var composureMoreInfo = document.getElementById('composureMoreInfo');
+    var composureContent = document.getElementById('composureContent');
+
+    composureMoreInfo.addEventListener('click', function() {
+        composureContent.style.display = (composureContent.style.display === 'none' || composureContent.style.display === '') ? 'block' : 'none';
+        composureMoreInfo.textContent = (composureContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Composure Usage
+    var composureUsageToggle = document.getElementById('composureUsageToggle');
+    var composureUsageContent = document.getElementById('composureUsageContent');
+    var composureLevel = parseFloat("{{ first_row['Composure'] }}");
+    var composureUsageDescription = document.getElementById('composureUsageDescription');
+
+    function updateComposureUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should recommend lower-risk investments that align closely with the investor\'s risk tolerance. Frequent reassurance and education about market fluctuations are essential to help these investors stay invested.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should offer a balanced portfolio with moderate-risk investments and provide regular updates to maintain confidence. Periodic check-ins during volatile periods can help reassure these investors.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should continue to provide a diversified portfolio that matches the investor\'s risk tolerance, with a mix of low and moderate-risk assets. Regular communication about market conditions is important.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should provide a growth-oriented portfolio that includes higher-risk investments. These investors can handle more market volatility, but periodic updates are still beneficial.';
+        } else {
+            description = 'Usage: Advisors should recommend a high-risk, high-reward investment strategy that aligns with the investor\'s long-term goals. These investors require less frequent reassurance but should still be kept informed about market conditions.';
+        }
+        composureUsageDescription.textContent = description;
+    }
+
+    composureUsageToggle.addEventListener('click', function() {
+        composureUsageContent.style.display = (composureUsageContent.style.display === 'none' || composureUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the composure usage description
+    updateComposureUsageDescription(composureLevel);
+});
+
+
+ // Risk Capacity More Info
+ var riskCapacityMoreInfo = document.getElementById('riskCapacityMoreInfo');
+    var riskCapacityContent = document.getElementById('riskCapacityContent');
+
+    riskCapacityMoreInfo.addEventListener('click', function() {
+        riskCapacityContent.style.display = (riskCapacityContent.style.display === 'none' || riskCapacityContent.style.display === '') ? 'block' : 'none';
+        riskCapacityMoreInfo.textContent = (riskCapacityContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+    // Risk Capacity Usage
+    var riskCapacityUsageToggle = document.getElementById('riskCapacityUsageToggle');
+    var riskCapacityUsageContent = document.getElementById('riskCapacityUsageContent');
+    var riskCapacityLevel = parseFloat("{{ first_row['Risk_capacity'] }}");
+    var riskCapacityUsageDescription = document.getElementById('riskCapacityUsageDescription');
+
+    function updateRiskCapacityUsageDescription(level) {
+        var description = '';
+        if (level < 0.85) {
+            description = 'Usage: Advisors should recommend lower-risk investment strategies, focusing on stability and capital preservation, as these investors cannot afford significant financial loss due to their lower overall wealth.';
+        } else if (level < 1.15) {
+            description = 'Usage: Advisors should tailor investment portfolios to match the investor’s risk tolerance, balancing risk and return without the need for significant adjustments based on wealth disparity.';
+        } else {
+            description = 'Usage: Advisors should recommend more aggressive investment strategies, leveraging the investor’s higher wealth to pursue higher returns, while ensuring the investments align with their overall financial goals.';
+        }
+        riskCapacityUsageDescription.textContent = description;
+    }
+
+    riskCapacityUsageToggle.addEventListener('click', function() {
+        riskCapacityUsageContent.style.display = (riskCapacityUsageContent.style.display === 'none' || riskCapacityUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the risk capacity usage description
+    updateRiskCapacityUsageDescription(riskCapacityLevel);
+
+
+     // Suitability Rating More Info
+     var suitabilityMoreInfo = document.getElementById('suitabilityMoreInfo');
+    var suitabilityContent = document.getElementById('suitabilityContent');
+
+    suitabilityMoreInfo.addEventListener('click', function() {
+        suitabilityContent.style.display = (suitabilityContent.style.display === 'none' || suitabilityContent.style.display === '') ? 'block' : 'none';
+        suitabilityMoreInfo.textContent = (suitabilityContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+
+    // Suitability Usage
+    var suitabilityUsageToggle = document.getElementById('suitabilityUsageToggle');
+    var suitabilityUsageContent = document.getElementById('suitabilityUsageContent');
+    var suitabilityLevel = parseFloat("{{ first_row['Suitability_rating'] }}");
+    var suitabilityUsageDescription = document.getElementById('suitabilityUsageDescription');
+
+    function updateSuitabilityUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should focus on fixed-income securities, government bonds, and other low-risk assets to ensure stability and capital preservation.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should recommend a mix of low-risk assets and some moderate-risk investments, ensuring a balanced approach with minimal exposure to significant losses.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should provide a diversified portfolio of stocks and bonds, ensuring the investor is comfortable with moderate market fluctuations while aiming for steady growth.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should recommend a portfolio with a significant allocation to equities and other growth-oriented investments, balancing these with some stable assets to manage risk.';
+        } else {
+            description = 'Usage: Advisors should create a portfolio heavily weighted in equities, venture capital, and other high-risk, high-reward investments, ensuring the investor is prepared for significant market volatility.';
+        }
+        suitabilityUsageDescription.textContent = description;
+    }
+
+    suitabilityUsageToggle.addEventListener('click', function() {
+        suitabilityUsageContent.style.display = (suitabilityUsageContent.style.display === 'none' || suitabilityUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the suitability usage description
+    updateSuitabilityUsageDescription(suitabilityLevel);
+
+
+
+
+// Objective Experience More Info
+var objectiveExperienceMoreInfo = document.getElementById('objectiveExperienceMoreInfo');
+    var objectiveExperienceContent = document.getElementById('objectiveExperienceContent');
+
+    objectiveExperienceMoreInfo.addEventListener('click', function() {
+        objectiveExperienceContent.style.display = (objectiveExperienceContent.style.display === 'none' || objectiveExperienceContent.style.display === '') ? 'block' : 'none';
+        objectiveExperienceMoreInfo.textContent = (objectiveExperienceContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+
+
+    // Objective Experience Usage
+    var objectiveExperienceUsageToggle = document.getElementById('objectiveExperienceUsageToggle');
+    var objectiveExperienceUsageContent = document.getElementById('objectiveExperienceUsageContent');
+    var objectiveExperienceLevel = parseFloat("{{ first_row['Objective_experience'] }}");
+    var objectiveExperienceUsageDescription = document.getElementById('objectiveExperienceUsageDescription');
+
+    function updateObjectiveExperienceUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should focus on basic education, introducing foundational concepts and simple, low-risk investment options. Emphasis should be placed on building the investor’s confidence and knowledge over time​.';
+        } else if (level <= 2.6) {
+            description = '<p>Usage: Advisors should provide a blend of educational resources and moderate-risk investment options, gradually introducing more complex concepts as the investor’s experience grows. It\'s essential to offer support and reassurance to build their investment confidence​.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should create a diversified portfolio that includes a mix of low to moderate-risk investments. Continuous education and detailed explanations of investment strategies and market conditions can help these investors make more informed decisions​.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Usage: Advisors should recommend a more sophisticated and diversified investment portfolio, including higher-risk options if appropriate. Detailed discussions about investment strategies and regular updates on market trends will help these investors stay engaged and informed';
+        } else {
+            description = 'Usage: Advisors can focus on advanced investment strategies, including high-risk, high-reward options. These investors should be involved in detailed strategic discussions and provided with in-depth market analysis.';
+        }
+        objectiveExperienceUsageDescription.textContent = description;
+    }
+
+    objectiveExperienceUsageToggle.addEventListener('click', function() {
+        objectiveExperienceUsageContent.style.display = (objectiveExperienceUsageContent.style.display === 'none' || objectiveExperienceUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the objective experience usage description
+    updateObjectiveExperienceUsageDescription(objectiveExperienceLevel);
+
+
+
+    // Investment History More Info
+    var investmentHistoryMoreInfo = document.getElementById('investmentHistoryMoreInfo');
+    var investmentHistoryContent = document.getElementById('investmentHistoryContent');
+
+    investmentHistoryMoreInfo.addEventListener('click', function() {
+        investmentHistoryContent.style.display = (investmentHistoryContent.style.display === 'none' || investmentHistoryContent.style.display === '') ? 'block' : 'none';
+        investmentHistoryMoreInfo.textContent = (investmentHistoryContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+    
+    // Investment History Usage
+    var investmentHistoryUsageToggle = document.getElementById('investmentHistoryUsageToggle');
+    var investmentHistoryUsageContent = document.getElementById('investmentHistoryUsageContent');
+    var investmentHistoryLevel = parseFloat("{{ first_row['Investment_history'] }}");
+    var investmentHistoryUsageDescription = document.getElementById('investmentHistoryUsageDescription');
+
+    function updateInvestmentHistoryUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should focus on foundational education, starting with basic investment concepts and gradually introducing simple, low-risk investment options. The goal is to build confidence and familiarity with the investment process over time.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should provide a mix of basic and slightly more advanced investment options, continuing educational efforts to help these investors understand more complex concepts.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should offer a diversified portfolio that includes a variety of investment options. Regular updates and explanations about market conditions and strategies can help these investors make more informed decisions.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should recommend a more sophisticated portfolio, including higher-risk investments if appropriate. Detailed discussions on advanced investment strategies and regular performance reviews will keep these investors engaged and informed.';
+        } else {
+            description = 'Usage: Advisors can focus on advanced and high-risk investment strategies. These investors should be involved in detailed strategic discussions and provided with comprehensive market analyses to leverage their extensive knowledge and experience.';
+        }
+        investmentHistoryUsageDescription.textContent = description;
+    }
+
+    investmentHistoryUsageToggle.addEventListener('click', function() {
+        investmentHistoryUsageContent.style.display = (investmentHistoryUsageContent.style.display === 'none' || investmentHistoryUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the investment history usage description
+    updateInvestmentHistoryUsageDescription(investmentHistoryLevel);
+
+// Objective Knowledge More Info
+var objectiveKnowledgeMoreInfo = document.getElementById('objectiveKnowledgeMoreInfo');
+    var objectiveKnowledgeContent = document.getElementById('objectiveKnowledgeContent');
+
+    objectiveKnowledgeMoreInfo.addEventListener('click', function() {
+        objectiveKnowledgeContent.style.display = (objectiveKnowledgeContent.style.display === 'none' || objectiveKnowledgeContent.style.display === '') ? 'block' : 'none';
+        objectiveKnowledgeMoreInfo.textContent = (objectiveKnowledgeContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+      // Objective Knowledge Usage
+      var objectiveKnowledgeUsageToggle = document.getElementById('objectiveKnowledgeUsageToggle');
+    var objectiveKnowledgeUsageContent = document.getElementById('objectiveKnowledgeUsageContent');
+    var objectiveKnowledgeLevel = parseFloat("{{ first_row['Objective_knowledge'] }}");
+    var objectiveKnowledgeUsageDescription = document.getElementById('objectiveKnowledgeUsageDescription');
+
+    function updateObjectiveKnowledgeUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should focus on foundational education, introducing basic concepts and simple, low-risk investment options. The aim is to gradually increase the investor\'s knowledge and confidence in the investment process.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should provide a mix of educational resources and moderate-risk investment options, ensuring that investors understand more complex concepts as their knowledge grows.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should offer a diversified portfolio that includes a variety of investment options. Regular updates and detailed explanations about market conditions and strategies can help these investors make informed decisions.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should recommend a more sophisticated and diversified portfolio, including higher-risk options if appropriate. Detailed discussions on advanced strategies and regular performance reviews will keep these investors engaged.';
+        } else {
+            description = 'Usage: Advisors can focus on advanced and high-risk investment strategies. These investors should be involved in detailed strategic discussions and provided with comprehensive market analyses to leverage their extensive knowledge and expertise.';
+        }
+        objectiveKnowledgeUsageDescription.textContent = description;
+    }
+
+    objectiveKnowledgeUsageToggle.addEventListener('click', function() {
+        objectiveKnowledgeUsageContent.style.display = (objectiveKnowledgeUsageContent.style.display === 'none' || objectiveKnowledgeUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the objective knowledge usage description
+    updateObjectiveKnowledgeUsageDescription(objectiveKnowledgeLevel);
+
+     // Impact Desire More Info
+     var impactDesireMoreInfo = document.getElementById('impactDesireMoreInfo');
+    var impactDesireContent = document.getElementById('impactDesireContent');
+
+    impactDesireMoreInfo.addEventListener('click', function() {
+        impactDesireContent.style.display = (impactDesireContent.style.display === 'none' || impactDesireContent.style.display === '') ? 'block' : 'none';
+        impactDesireMoreInfo.textContent = (impactDesireContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+    
+    // Impact Desire Usage
+    var impactDesireUsageToggle = document.getElementById('impactDesireUsageToggle');
+    var impactDesireUsageContent = document.getElementById('impactDesireUsageContent');
+    var impactDesireLevel = parseFloat("{{ first_row['Impact_desire'] }}");
+    var impactDesireUsageDescription = document.getElementById('impactDesireUsageDescription');
+
+    function updateImpactDesireUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should prioritize traditional financial goals over social or environmental impact. These investors may have little interest in impact investing and prefer conventional investment strategies.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should consider introducing the concept of impact investing as a complement to traditional financial goals. A balanced approach with a small portion allocated to impact investments might be appropriate.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors should recommend a diversified portfolio that includes a meaningful allocation to impact investments. These investors value social and environmental outcomes but still prioritize financial returns.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should focus on impact investments that align with the investor\'s specific social or environmental values. Financial returns are important, but so are the positive impacts generated by the investments.';
+        } else {
+            description = 'Usage: Advisors should prioritize impact investments that align with the investor\'s strong desire to make a significant social or environmental impact. These investors may be willing to accept lower financial returns for higher impact.';
+        }
+        impactDesireUsageDescription.textContent = description;
+    }
+
+    impactDesireUsageToggle.addEventListener('click', function() {
+        impactDesireUsageContent.style.display = (impactDesireUsageContent.style.display === 'none' || impactDesireUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the impact desire usage description
+    updateImpactDesireUsageDescription(impactDesireLevel);
+
+
+
+    // Impact Apprehension More Info
+    var impactApprehensionMoreInfo = document.getElementById('impactApprehensionMoreInfo');
+    var impactApprehensionContent = document.getElementById('impactApprehensionContent');
+
+    impactApprehensionMoreInfo.addEventListener('click', function() {
+        impactApprehensionContent.style.display = (impactApprehensionContent.style.display === 'none' || impactApprehensionContent.style.display === '') ? 'block' : 'none';
+        impactApprehensionMoreInfo.textContent = (impactApprehensionContent.style.display === 'block') ? 'Less' : 'Info';
+    });
+
+    // Impact Apprehension Usage
+    var impactApprehensionUsageToggle = document.getElementById('impactApprehensionUsageToggle');
+    var impactApprehensionUsageContent = document.getElementById('impactApprehensionUsageContent');
+    var impactApprehensionLevel = parseFloat("{{ first_row['Impact_apprehension'] }}");
+    var impactApprehensionUsageDescription = document.getElementById('impactApprehensionUsageDescription');
+
+    function updateImpactApprehensionUsageDescription(level) {
+        var description = '';
+        if (level <= 1.8) {
+            description = 'Usage: Advisors should focus on traditional investments and avoid emphasizing impact investing, as these investors are highly skeptical about its effectiveness.';
+        } else if (level <= 2.6) {
+            description = 'Usage: Advisors should introduce impact investments cautiously, ensuring that these options are backed by strong evidence of their effectiveness and that they align with the investor\'s financial goals.';
+        } else if (level <= 3.4) {
+            description = 'Usage: Advisors can include impact investments in the portfolio, but they should be prepared to address concerns and provide clear evidence of the social and environmental benefits.';
+        } else if (level <= 4.2) {
+            description = 'Usage: Advisors should recommend a balanced portfolio that includes impact investments, focusing on those with proven track records and clear outcomes that match the investor\'s values.';
+        } else {
+            description = 'Usage: Advisors should emphasize impact investing, as these investors are comfortable with integrating social and environmental factors into their investment decisions and are less likely to be skeptical of their effectiveness.';
+        }
+        impactApprehensionUsageDescription.textContent = description;
+    }
+
+    impactApprehensionUsageToggle.addEventListener('click', function() {
+        impactApprehensionUsageContent.style.display = (impactApprehensionUsageContent.style.display === 'none' || impactApprehensionUsageContent.style.display === '') ? 'block' : 'none';
+    });
+
+    // Initial call to update the impact apprehension usage description
+    updateImpactApprehensionUsageDescription(impactApprehensionLevel);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!-- # 'name': name,
+    # 'currency': currency,
+    # 'Confidence': Confidence,
+    # 'Impulsivity': Impulsivity,
+    # 'Familiarity_preferences': Familiarity_preferences,
+    # 'Risk_tolerance': Risk_tolerance,
+    # 'Composure': Composure,
+    # 'Overall_Wealth': Overall_Wealth,
+    # 'Risk_capacity': Risk_capacity,
+    # 'Suitability_rating': Suitability_rating,
+    # 'Objective_experience': Objective_experience,
+    # 'Investment_history': Investment_history,
+    # 'Objective_knowledge': Objective_knowledge,
+    # 'self_Identification_of_knowledge': self_Identification_of_knowledge,
+    # 'Impact_desire': Impact_desire,
+    # 'Impact_apprehension': Impact_apprehension,
+    # 'Impact_tradeoff': Impact_tradeoff,
+    # 'need_for_evidence': need_for_evidence,
+    # 'Level_of_sustainable_assets': Level_of_sustainable_assets -->
+    
+    
+    
+    
+    
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Submit Form</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('submitForm').onsubmit = async function(event) {
+                    event.preventDefault(); // Prevent the default form submission
+    
+                    // Create a FormData object from the form
+                    const formData = new FormData(this);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+    
+                    try {
+                        // Send the data to the server using fetch
+                        const response = await fetch('/michlereportmaking', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data) // Convert data to JSON
+                        });
+    
+                        if (response.ok) {
+                            // Redirect to the report page or handle response
+                            alert('Data submitted successfully');
+                            window.location.href = '/show_report'; // Redirect to the new route
+                        } else {
+                            console.error('Error:', await response.text());
+                        }
+                    } catch (error) {
+                        console.error('Fetch error:', error);
+                    }
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <!-- Form without action, handled by JavaScript -->
+        <form id="submitForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="WMusename" placeholder="WMusename" required>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    </html>
+    

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+    <!-- Include CryptoJS from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+   
+
+
+
+
+
+    <script>
+        function gotomakenewac() {
+            window.location.href = '/signup';
+        }
+    </script>
+
+    <style>
+        button {
+            width: 200px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            /* Optional: Add padding to make sure text fits */
+            padding: 0 15px;
+            box-sizing: border-box; /* Ensure padding is included in the width and height */
+        }
+
+        #backbtm {
+            background-color: #0e1c32;
+        }
+
+        #additional-fields {
+            display: none; /* Start with additional fields hidden */
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-container">
+        <img src="{{ url_for('static', filename='images/Vexra-transformed.png') }}" alt="Banner Image" class="login-image">
+
+
+
+
+        <div class="secondlogdiv">
+            <form id="signin-form">
+                <div class="form-group">
+                    <label for="username"></label>
+                    <input type="text" id="usernamelog" name="username" required placeholder="Enter username">
+                    <div id="username-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="username"></label>
+                    <input type="email" id="emaillog" name="email" required placeholder="Enter Email Address">
+                    <div id="username-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" id="passwordlog" name="password" required placeholder="Enter Password">
+                    <div id="password-error" class="error-message"></div>
+                </div>
+
+
+                <!-- Container for additional fields -->
+                <div id="additional-fields">
+                    <div class="form-group">
+                        <label for="re-enter-email">Re-enter Email:</label>
+                        <input type="email" id="re-enter-email" name="re-enter-email">
+                        <div id="re-enter-email-error" class="error-message"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="re-enter-password">Re-enter Password:</label>
+                        <input type="password" id="re-enter-password" name="re-enter-password">
+                        <div id="re-enter-password-error" class="error-message"></div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="Loginbuttons">
+                    <button type="submit">Sign Up</button>    
+    
+                    <hr>
+
+                    <button id="backbtm" onclick="gotomakenewac()">Go Back</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+
+        <h3 class="footershout"> Powerd by Vexra</h3>
+    </div>
+
+
+        
+        
+
+
+    <!-- Using a quary string to automatilcaylly clear cach for local hosting on javascript file-->
+    <script type="module" src="{{ url_for('static', filename='javasignup.js') }}"></script>
+
+</body>
+</html>

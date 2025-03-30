@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
+
+
+    <script>
+        function gotomakenewac() {
+            window.location.href = '/gotomakenewac';
+        }
+    </script>
+
+    <style>
+        button {
+            width: 200px; /* Adjust the width as needed */
+            height: 50px; /* Adjust the height as needed */
+            /* Optional: Add padding to make sure text fits */
+            padding: 0 15px;
+            box-sizing: border-box; /* Ensure padding is included in the width and height */
+        }
+
+
+
+        #backbtm {
+            background-color: #0e1c32;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="login-container">
+        <img src="{{ url_for('static', filename='images/Vexra-transformed.png') }}" alt="Banner Image" class="login-image">
+
+        <div class="secondlogdiv">
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="user-identifier"></label>
+                    <input type="text" id="user-identifier" name="user-identifier" required placeholder="Enter username or email">
+                    <div id="user-identifier-error" class="error-message"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" required required placeholder="Enter Password">
+                    <div id="password-error" class="error-message"></div>
+                </div>
+            
+                <div class="Loginbuttons">
+                    <button type="submit">Login</button>
+            
+                    <hr>
+            
+                    <button type="button" id="backbtm" onclick="gotomakenewac()">Create a New Account!</button>
+                </div>
+            </div>
+        </form>
+
+        <h3 class="footershout"> Powerd by Vexra</h3>
+    </div>
+
+
+        
+        
+
+
+    <!-- Using a quary string to automatilcaylly clear cach for local hosting on javascript file-->
+    <script type="module" src="{{ url_for('static', filename='java.js') }}"></script>
+
+</body>
+</html>
